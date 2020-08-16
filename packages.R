@@ -23,8 +23,10 @@ library(janitor)
 #library(testthat)
 
 library(sf)
+library(s2)
 library(readxl)
 library(fs)
+library(furrr)
 
 #library(stplanr)      # geographic transport data package
 #library(tmap)         # visualization package (see Chapter 8)
