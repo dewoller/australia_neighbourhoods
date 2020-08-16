@@ -3,11 +3,11 @@ if (FALSE) {
   source('_drake.R')
 
   readd(map_mesh) %>%
-    head(20000) %>%
+    head(2000) %>%
     { . } -> df_to_geo
 
 
-  df_mesh_centroids %>%
+  readd(df_mesh_centroids) %>%
     head(20) %>%
     { . } -> df_from_point
 
@@ -28,24 +28,32 @@ point_within_geo_dist <- function( df_from_point, id_point = 'MB_CODE16', from_p
                                   df_to_geo, id_geo = 'MB_CODE16', to_geo = 'geometry',
                                   max_dist=5000) {
 
-num_groups = future::availableCores()
-future::plan(multicore, workers = num_groups)
 
-df_from_point %>%
-  mutate( group = (row_number()-1) %/% (n()/num_groups)) %>%
-  group_by( group ) %>%
-  nest() %>%
-  mutate( results = future_map( data, ~do_one_point_within_geo_dist(.x, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist)))  %>%
-  ungroup() %>%
-  select(results) %>%
-  unnest(results)
+  num_groups = future::availableCores()
+
+  new_cluster(num_groups) %>%
+    cluster_copy(c("do_one_point_within_geo_dist", 'df_to_geo')) %>%
+    cluster_library( c('s2', 'dplyr', 'rlang', 'sf', 'purrr', 'tidyr')) %>% 
+    { . } -> cluster
+
+
+  df_from_point %>%
+    mutate( partition = (row_number()-1) %/% (n()/num_groups)) %>%
+    group_by( partition ) %>%
+    nest() %>%
+    partition(cluster) %>%
+    mutate( results = map( data, ~do_one_point_within_geo_dist(.x, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist)))  %>%
+    collect() %>%
+    ungroup() %>%
+    select(results) %>%
+    unnest(results)
 
 }
 
 
-  do_one_point_within_geo_dist <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
+do_one_point_within_geo_dist <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
 
-    output_id = 'to'
+  output_id = 'to'
   df_to_geo %>%
     mutate( s2_geo=s2_geog_from_wkb(st_as_binary( !!sym( to_geo )), check=FALSE)) %>%
     st_drop_geometry() %>%
@@ -60,14 +68,14 @@ df_from_point %>%
 
   df_from_point_s2 %>%
     mutate( to_row = map( s2_point, ~s2_dwithin_matrix( .x, df_to_geo_s2 %>%
-                                                              pluck('s2_geo'),
-                                                            max_dist))) %>%
-    mutate( to_row = map(to_row, 1 )) %>%
-    select(-s2_point) %>%
-    mutate( !!output_id  := map( to_row, function(x) { df_to_geo_s2[ x, id_geo ] })) %>%
-    select(-to_row) %>%
-    unnest( !!output_id, names_sep='_'  ) %>%
-    mutate( max_dist = max_dist)
+                                                       pluck('s2_geo'),
+                                                     max_dist))) %>%
+  mutate( to_row = map(to_row, 1 )) %>%
+  select(-s2_point) %>%
+  mutate( !!output_id  := map( to_row, function(x) { df_to_geo_s2[ x, id_geo ] })) %>%
+  select(-to_row) %>%
+  unnest( !!output_id, names_sep='_'  ) %>%
+  mutate( max_dist = max_dist)
 
 
 }
