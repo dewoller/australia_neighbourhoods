@@ -5,3 +5,5 @@ graphhopper=Sys.setenv(GRAPHHOPPER='874bdba9-50cc-4754-a853-ac9496b98d64')
 if (Xmisc::is.package.loaded(ggmap)) {
   ggmap::register_google( google_maps_geocode_api_key)
 }
+
+db_password='earthen air sanction february'

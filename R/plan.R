@@ -41,7 +41,7 @@ the_plan <-
              df_mesh_centroids = calc_centroids( map_mesh), 
 
 
-             df_mesh_within_range = target( point_within_geo_dist( df_mesh_centroids, 'MB_CODE16', 'point',
+             df_mesh_within_range = target( point_within_geo_dist( df_mesh_centroids, 'MB_CODE16', 'geometry',
                                                                   map_mesh, 'MB_CODE16', 'geometry',
                                                                   max_dist=5000)),
 

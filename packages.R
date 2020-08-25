@@ -27,6 +27,8 @@ library(s2)
 library(readxl)
 library(fs)
 library(furrr)
+library(vroom)
+library(RPostgreSQL)
 
 #library(stplanr)      # geographic transport data package
 #library(tmap)         # visualization package (see Chapter 8)
@@ -66,4 +68,4 @@ GLOBAL_BASE_DATE = floor_date(GLOBAL_BASE_DATE_TIME, unit='day' )
 
 
 
-
+source('keys.R')
