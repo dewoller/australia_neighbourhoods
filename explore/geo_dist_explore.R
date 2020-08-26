@@ -1,3 +1,4 @@
+
 if (FALSE) {
 
   source('_drake.R')
@@ -17,21 +18,13 @@ if (FALSE) {
   to_geo = 'geometry'
   max_dist=5000
 
- a= point_within_geo_dist( df_from_point, 'MB_CODE16', 'geometry', df_to_geo, 'MB_CODE16', 'geometry', 5000)
+  a= point_within_geo_dist( df_from_point, 'MB_CODE16', 'geometry', df_to_geo, 'MB_CODE16', 'geometry', 5000)
 
- a %>%
-   select(results) %>%
-   mutate( error = map(results,2)) %>%
-   mutate( results = map(results,1)) %>%
-   unnest(col=results)
-
-}
-
-
-point_within_geo_dist_test = function()
-{
-  point_within_geo_dist( df_from_point, 'MB_CODE16', 'geometry', df_to_geo, 'MB_CODE16', 'geometry', 5000)
-
+  a %>%
+    select(results) %>%
+    mutate( error = map(results,2)) %>%
+    mutate( results = map(results,1)) %>%
+    unnest(col=results)
 
 }
 
@@ -40,55 +33,35 @@ point_within_geo_dist <- function( df_from_point, id_point = 'MB_CODE16', from_p
                                   df_to_geo, id_geo = 'MB_CODE16', to_geo = 'geometry',
                                   max_dist=5000) {
 
+  safe_do_one_point = safely( try_do_one_point_within_geo_dist, otherwise=list())
+  num_groups = future::availableCores()
 
-  num_groups = future::availableCores() * 100
+
+  try()
+
 
   new_cluster(num_groups) %>%
-    cluster_copy(c("do_one_point_within_geo_dist", 'df_to_geo','try_do_one_point_within_geo' )) %>%
-    cluster_library( c('s2', 'dplyr', 'rlang', 'sf', 'purrr', 'tidyr', 'readr')) %>%
+    cluster_copy(c("do_one_point_within_geo_dist", 'df_to_geo')) %>%
+    cluster_library( c('s2', 'dplyr', 'rlang', 'sf', 'purrr', 'tidyr')) %>%
     { . } -> cluster
 
-  safe_do_one_point = safely( try_do_one_point_within_geo, otherwise=list())
-
-   #browser()
 
   df_from_point %>%
     mutate( partition = (row_number()-1) %/% (n()/num_groups)) %>%
     group_by( partition ) %>%
     nest() %>%
-#    partition(cluster) %>%
-    mutate( results = map( data, ~try_do_one_point_within_geo(.x, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist)))  %>%
-#    collect() %>%
-    ungroup() #%>%
- #   select(results) %>%
- #   mutate( error = map(results,2)) %>%
- #   mutate( results = map(results,1)) %>%
- #   unnest(col=results)
+    partition(cluster) %>%
+    mutate( results = map( data, ~safe_do_one_point(.x, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist)))  %>%
+    collect() %>%
+    ungroup() %>%
+    select(results) %>%
+    mutate( error = map(results,2)) %>%
+    mutate( results = map(results,1))
 
 }
-
-
-try_do_one_point_within_geo <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
-
-  cat('Starting', file='run.log', append=TRUE)
-  write_csv( df_from_point, 'starting.csv', append=TRUE)
-
-tryCatch(
-           do_one_point_within_geo_dist( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) ,
-           finally=FALSE
-
-  ) -> a
-
-  cat('ending', file='run.log', append=TRUE)
-  write_csv( df_from_point, 'ending.csv', append=TRUE)
-  write_csv( a, 'ending_results.csv', append=TRUE)
-  a
-
-}
-
-
 do_one_point_within_geo_dist <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
 
+  log('a')
   output_id = 'to'
   df_to_geo %>%
     mutate( s2_geo=s2_geog_from_wkb(st_as_binary( !!sym( to_geo )), check=FALSE)) %>%

@@ -17,5 +17,5 @@ select a.mb_code16 as mb_code16, b.mb_code16 as to_mb_code16, 2000
  create index meshblock_concordance2 on meshblock_concordance( distance, to_mb_code16);
  create index meshblock_concordance3 on meshblock_concordance( distance, mb_code16);
  create index meshblock_concordance4 on meshblock_concordance( mb_code16, to_mb_code16);
-
+ create index meshblock_concordance5 on meshblock_concordance( distance, mb_code16, to_mb_code16);
 

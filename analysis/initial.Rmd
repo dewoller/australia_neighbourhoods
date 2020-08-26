@@ -1,0 +1,52 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r data_prep}
+source('_drake.R')
+  con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
+                                user="dewoller", password=db_password,
+                                host="localhost", port=5432, dbname="postgis_db")
+
+dbReadTable( con, 'meshblock_statistics') %>%
+  as_tibble() %>%
+  { . } -> df_stats
+
+read_csv("data/SA4_2016_AUST.csv") %>%
+  janitor::clean_names() %>%
+  mutate( sa4_code16 = as.character( sa4_code_2016)) %>%
+  { . } -> df_sa4
+
+loadd(map_mesh)
+
+map_mesh %>%
+  janitor::clean_names() %>%
+  inner_join( df_sa4, by = "sa4_code16" ) %>%
+  inner_join( df_stats, by='mb_code16') %>%
+  { . } -> df_wide
+
+df_wide %>%
+  sf::st_drop_geometry() %>%
+  filter(distance==5000) %>%
+  filter( str_detect( gccsa_name_2016, 'Greater | Capital ' )) %>%
+  { . } -> df_wide_partial
+```
+
+```{r graphs}
+
+df_wide_partial %>%
+  ggplot( aes( y=intersection_area, x=gccsa_name_2016, fill=gccsa_name_2016 )) +
+  geom_violin() +
+  facet_wrap( ~mb_cat16)
+
+
+
+```
+
