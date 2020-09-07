@@ -104,4 +104,25 @@ readd(map_mesh) %>%
 
 
 
+loadd(map_mesh)
+df_mesh_detail_csv
 
+map_mesh %>%
+  anti_join( df_mesh_detail_csv)
+
+df_mesh_detail_csv %>%
+  anti_join( map_mesh)
+
+map_mesh %>%
+  anti_join( df_mesh_detail)
+
+df_mesh_detail%>%
+  anti_join( map_mesh)
+
+
+
+df_mesh_detail_csv %>%
+  filter( mb_code16=='20136000000')
+
+map_mesh %>%
+  filter( mb_code16=='20136000000')

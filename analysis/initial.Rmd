@@ -2,51 +2,87 @@
 title: "Home"
 site: workflowr::wflow_site
 output:
-  workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
+    workflowr::wflow_html:
+      toc: false
+      editor_options:
+    chunk_output_type: console
 ---
 
 
-```{r data_prep}
+```{r data_prep, include=FALSE}
 source('_drake.R')
-  con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
-                                user="dewoller", password=db_password,
-                                host="localhost", port=5432, dbname="postgis_db")
 
-dbReadTable( con, 'meshblock_statistics') %>%
-  as_tibble() %>%
-  { . } -> df_stats
+con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
+                              user="dewoller", password=db_password,
+                              host="alf", port=5432, dbname="postgis_db")
 
-read_csv("data/SA4_2016_AUST.csv") %>%
-  janitor::clean_names() %>%
-  mutate( sa4_code16 = as.character( sa4_code_2016)) %>%
-  { . } -> df_sa4
+oneGraphSet = function (buffer_size) {
 
-loadd(map_mesh)
+  cat(glue::glue('# Graphs for {buffer_size} M buffer</h2>'))
+  dbGetQuery(con, glue::glue("
+             with mb_cities as (
+                                select mb_code16, gcc_name16
+                                from meshblock
+                                where gcc_code16 like '_G%' or gcc_code16 = '8ACTE'
+             )
+             select mb.mb_code16, gcc_name16, mb.mb_category_name_2016, population_covered, intersection_area, category_proportion
+             from
+             meshblock_statistics_{buffer_size} mb
+             join meshblock_detail md using (mb_code16)
+             join mb_cities mc using (mb_code16)
+             where md.mb_category_name_2016 ='Residential'
+             ")) %>%
+             as_tibble() %>%
+             { . } -> df_stats
 
-map_mesh %>%
-  janitor::clean_names() %>%
-  inner_join( df_sa4, by = "sa4_code16" ) %>%
-  inner_join( df_stats, by='mb_code16') %>%
-  { . } -> df_wide
+  df_stats %>%
+    ggplot( aes( y=intersection_area, x=gcc_name16, fill=gcc_name16 )) +
+    geom_violin() +
+    facet_wrap( ~mb_category_name_2016, scales='free', ncol=1) +
+    coord_flip() +
+    ggtitle( "Neighbourhood Category Areas (in m^2) around all Residential Meshblocks"   ) %>%
+    { . } -> p
+  print(p)
 
-df_wide %>%
-  sf::st_drop_geometry() %>%
-  filter(distance==5000) %>%
-  filter( str_detect( gccsa_name_2016, 'Greater | Capital ' )) %>%
-  { . } -> df_wide_partial
+  df_stats %>%
+    filter(mb_category_name_2016 %in% c('Residential','Commercial','Parkland')) %>%
+    ggplot( aes( y=category_proportion, x=gcc_name16, fill=gcc_name16 )) +
+    geom_violin() +
+    facet_wrap( ~mb_category_name_2016, scales='free', ncol=1) +
+    coord_flip() +
+    ggtitle( "Neighbourhood Category Proportion for Residential, Commerical and Parklands around all Residential Meshblocks"   ) %>%
+    { . } -> p
+  print(p)
+}
+
+
+
+
 ```
 
-```{r graphs}
+#  Graphs
 
-df_wide_partial %>%
-  ggplot( aes( y=intersection_area, x=gccsa_name_2016, fill=gccsa_name_2016 )) +
-  geom_violin() +
-  facet_wrap( ~mb_cat16)
-
-
+```{r graphs, echo=FALSE, fig.height=15, fig.width=10}
+oneGraphSet(5000)
+oneGraphSet(2000)
+oneGraphSet(1000)
+oneGraphSet(400)
 
 ```
+
+
+Sq km for each category, for each distance, for each
+source_category = residential
+
+output
+source_MB, land_use_target_category, distance_category,
+sa4 category, sqkm of category, proportion of all categories
+
+
+parklands, commercial, land use mix
+
+Walkability - commercial, parklands, residential
+
+street connections
+
 

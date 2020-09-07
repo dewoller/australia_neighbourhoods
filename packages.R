@@ -27,7 +27,7 @@ library(s2)
 library(readxl)
 library(fs)
 library(furrr)
-library(vroom)
+#library(vroom)
 library(RPostgreSQL)
 
 #library(stplanr)      # geographic transport data package

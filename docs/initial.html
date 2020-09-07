@@ -325,7 +325,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-08-25
+<strong>Last updated:</strong> 2020-08-30
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -349,7 +349,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -416,16 +416,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong5f3b1d2"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 5f3b1d2 </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstree7c12968c6045124d23fc96efa9d68322639543dbtargetblank7c12968a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/australia_neighbourhoods/tree/7c12968c6045124d23fc96efa9d68322639543db" target="_blank">7c12968</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrong5f3b1d2" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstree7c12968c6045124d23fc96efa9d68322639543dbtargetblank7c12968a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version 5f3b1d2. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/dewoller/australia_neighbourhoods/tree/7c12968c6045124d23fc96efa9d68322639543db" target="_blank">7c12968</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -440,32 +440,23 @@ Ignored files:
     Ignored:    data/
 
 Untracked files:
-    Untracked:  '
-    Untracked:  R/point_in_geo_trial1.R
-    Untracked:  R/point_in_geo_trial2.R
-    Untracked:  a.b
-    Untracked:  analysis/initial.Rmd
-    Untracked:  calculate_intersection.sql
-    Untracked:  create_part2.sql
-    Untracked:  create_part4.sql
-    Untracked:  debug.log
-    Untracked:  explore.sql
-    Untracked:  explore/geo_dist_explore.R
-    Untracked:  explore/import_to_sql.R
-    Untracked:  explore1.sql
-    Untracked:  keys.Rout
-    Untracked:  out.log
-    Untracked:  output.csv
-    Untracked:  postgis_create.sql
-    Untracked:  run.log
-    Untracked:  try.R
+    Untracked:  R/subchunkify.R
+    Untracked:  figure/
+    Untracked:  sql/create_mco_1000.sql
+    Untracked:  sql/create_mco_2000.sql
+    Untracked:  sql/create_mco_400.sql
+    Untracked:  sql/create_mco_5000.sql
+    Untracked:  sql/explore_3577.sql
+    Untracked:  sql/merge_concordances.sql
+    Untracked:  sql/postgis_create_3577.sql
 
 Unstaged changes:
     Modified:   R/plan.R
-    Modified:   R/point_within_geo_dist.R
-    Modified:   analysis/index.Rmd
-    Modified:   keys.R
+    Modified:   analysis/initial.Rmd
+    Modified:   explore/explore.R
+    Modified:   explore/import_to_sql.R
     Modified:   packages.R
+    Modified:   sql/create_meshblock_statistics.sql
 
 </code></pre>
 <p>
@@ -478,87 +469,126 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/initial.Rmd</code>) and HTML (<code>docs/initial.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/9e3d25c325586a0801122538225cf5669011408c/analysis/initial.Rmd" target="_blank">9e3d25c</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-08-25
+</td>
+<td>
+bac
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/9e3d25c325586a0801122538225cf5669011408c/docs/initial.html" target="_blank">9e3d25c</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-08-25
+</td>
+<td>
+bac
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
-<pre class="r"><code>source(&#39;_drake.R&#39;)</code></pre>
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-✔ tibble  3.0.3     ✔ dplyr   1.0.2
-✔ tidyr   1.1.0     ✔ stringr 1.4.0
-✔ readr   1.3.1     ✔ forcats 0.5.0</code></pre>
-<pre><code>Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
-<pre><code>Loading required package: future</code></pre>
-<pre><code>
-Attaching package: &#39;future&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:rmarkdown&#39;:
-
-    run</code></pre>
-<pre><code>The following object is masked from &#39;package:drake&#39;:
-
-    plan</code></pre>
-<pre><code>Loading required package: DBI</code></pre>
-<pre><code>Data: (c) OpenStreetMap contributors, ODbL 1.0 - http://www.openstreetmap.org/copyright</code></pre>
-<pre><code>Routing: OSRM - http://project-osrm.org/</code></pre>
-<pre><code>Loading required package: rgeos</code></pre>
-<pre><code>Loading required package: sp</code></pre>
-<pre><code>rgeos version: 0.5-3, (SVN revision 634)
- GEOS runtime version: 3.8.0-CAPI-1.13.1 
- Linking to sp version: 1.4-0 
- Polygon checking: TRUE </code></pre>
-<pre><code>Loading required package: maptools</code></pre>
-<pre><code>Checking rgeos availability: TRUE</code></pre>
-<pre><code>This is workflowr version 1.6.2
-Run ?workflowr for help getting started</code></pre>
-<pre><code>Loading required package: xml2</code></pre>
-<pre><code>[conflicted] Will prefer purrr::pluck over any other package</code></pre>
-<pre><code>[conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<pre><code>[conflicted] Will prefer dplyr::summarise over any other package</code></pre>
-<pre><code>ℹ unloading 1 targets from environment</code></pre>
-<pre class="r"><code>  con &lt;- RPostgreSQL::dbConnect(DBI::dbDriver(&quot;PostgreSQL&quot;),
-                                user=&quot;dewoller&quot;, password=db_password,
-                                host=&quot;localhost&quot;, port=5432, dbname=&quot;postgis_db&quot;)
-
-dbReadTable( con, &#39;meshblock_statistics&#39;) %&gt;%
-  as_tibble() %&gt;%
-  { . } -&gt; df_stats
-
-read_csv(&quot;data/SA4_2016_AUST.csv&quot;) %&gt;%
-  janitor::clean_names() %&gt;%
-  mutate( sa4_code16 = as.character( sa4_code_2016)) %&gt;%
-  { . } -&gt; df_sa4</code></pre>
-<pre><code>Parsed with column specification:
-cols(
-  SA4_CODE_2016 = col_double(),
-  SA4_NAME_2016 = col_character(),
-  GCCSA_CODE_2016 = col_character(),
-  GCCSA_NAME_2016 = col_character(),
-  STATE_CODE_2016 = col_double(),
-  STATE_NAME_2016 = col_character(),
-  AREA_ALBERS_SQKM = col_double()
-)</code></pre>
-<pre class="r"><code>loadd(map_mesh)
-
-map_mesh %&gt;%
-  janitor::clean_names() %&gt;%
-  inner_join( df_sa4, by = &quot;sa4_code16&quot; ) %&gt;%
-  inner_join( df_stats, by=&#39;mb_code16&#39;) %&gt;%
-  { . } -&gt; df_wide
-
-df_wide %&gt;%
-  sf::st_drop_geometry() %&gt;%
-  filter(distance==5000) %&gt;%
-  filter( str_detect( gccsa_name_2016, &#39;Greater | Capital &#39; )) %&gt;%
-  { . } -&gt; df_wide_partial</code></pre>
-<pre class="r"><code>df_wide_partial %&gt;%
-  ggplot( aes( y=intersection_area, x=gccsa_name_2016, fill=gccsa_name_2016 )) +
-  geom_violin() +
-  facet_wrap( ~mb_cat16)</code></pre>
-<p><img src="figure/initial.Rmd/graphs-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="graphs" class="section level1">
+<h1>Graphs</h1>
+<pre><code># Graphs for 5000 M buffer&lt;/h2&gt;</code></pre>
+<p><img src="figure/initial.Rmd/graphs-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-1">
+Past versions of graphs-1.png
+</button>
+</p>
+<div id="fig-graphs-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/9e3d25c325586a0801122538225cf5669011408c/docs/figure/initial.Rmd/graphs-1.png" target="_blank">9e3d25c</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-08-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/initial.Rmd/graphs-2.png" width="960" style="display: block; margin: auto;" /></p>
+<pre><code># Graphs for 2000 M buffer&lt;/h2&gt;</code></pre>
+<p><img src="figure/initial.Rmd/graphs-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/initial.Rmd/graphs-4.png" width="960" style="display: block; margin: auto;" /></p>
+<pre><code># Graphs for 1000 M buffer&lt;/h2&gt;</code></pre>
+<p><img src="figure/initial.Rmd/graphs-5.png" width="960" style="display: block; margin: auto;" /><img src="figure/initial.Rmd/graphs-6.png" width="960" style="display: block; margin: auto;" /></p>
+<pre><code># Graphs for 400 M buffer&lt;/h2&gt;</code></pre>
+<p><img src="figure/initial.Rmd/graphs-7.png" width="960" style="display: block; margin: auto;" /><img src="figure/initial.Rmd/graphs-8.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Sq km for each category, for each distance, for each source_category = residential</p>
+<p>output source_MB, land_use_target_category, distance_category, sa4 category, sqkm of category, proportion of all categories</p>
+<p>parklands, commercial, land use mix</p>
+<p>Walkability - commercial, parklands, residential</p>
+<p>street connections</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -569,11 +599,11 @@ df_wide %&gt;%
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.1 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -587,40 +617,41 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] rvest_0.3.6           xml2_1.3.2            DT_0.15              
- [4] leaflet_2.0.3         workflowr_1.6.2       cleangeo_0.2-3       
+ [1] rvest_0.3.6           xml2_1.3.2            DT_0.13              
+ [4] leaflet_2.0.3.9000    workflowr_1.6.2       cleangeo_0.2-3       
  [7] maptools_1.0-1        rgeos_0.5-3           sp_1.4-2             
 [10] geohash_0.4.0         multidplyr_0.0.0.9000 osrm_3.3.3           
-[13] RPostgreSQL_0.6-2     DBI_1.1.0             vroom_1.3.0          
-[16] furrr_0.1.0           future_1.18.0         fs_1.5.0             
-[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-5             
-[22] janitor_2.0.1         rmarkdown_2.3         lubridate_1.7.9      
-[25] geosphere_1.5-10      forcats_0.5.0         stringr_1.4.0        
-[28] dplyr_1.0.2           purrr_0.3.4           readr_1.3.1          
-[31] tidyr_1.1.0           tibble_3.0.3          ggplot2_3.3.2        
-[34] tidyverse_1.3.0       drake_7.12.4          dotenv_1.0.2         
-[37] conflicted_1.0.4      nvimcom_0.9-102      
+[13] RPostgreSQL_0.6-2     DBI_1.1.0             furrr_0.1.0          
+[16] future_1.17.0         fs_1.5.0              readxl_1.3.1         
+[19] s2_1.0.2.9000         sf_0.9-3              janitor_2.0.1        
+[22] rmarkdown_2.3         lubridate_1.7.9       geosphere_1.5-10     
+[25] forcats_0.5.0         stringr_1.4.0         dplyr_1.0.2          
+[28] purrr_0.3.4           readr_1.3.1           tidyr_1.1.1          
+[31] tibble_3.0.3          ggplot2_3.3.2         tidyverse_1.3.0      
+[34] drake_7.12.4          dotenv_1.0.2          conflicted_1.0.4     
+[37] nvimcom_0.9-102      
 
 loaded via a namespace (and not attached):
  [1] colorspace_1.4-1   ellipsis_0.3.1     class_7.3-17       rprojroot_1.3-2   
  [5] snakecase_0.11.0   rstudioapi_0.11    farver_2.0.3       listenv_0.8.0     
- [9] bit64_4.0.2        fansi_0.4.1        codetools_0.2-16   knitr_1.29        
-[13] jsonlite_1.7.0     broom_0.7.0        dbplyr_1.4.4       Xmisc_0.2.1       
-[17] compiler_4.0.2     httr_1.4.2         backports_1.1.8    assertthat_0.2.1  
-[21] cli_2.0.2          later_1.1.0.1      htmltools_0.5.0    prettyunits_1.1.1 
-[25] tools_4.0.2        igraph_1.2.5       gtable_0.3.0       glue_1.4.1        
-[29] wk_0.3.2           Rcpp_1.0.5         cellranger_1.1.0   vctrs_0.3.2       
-[33] crosstalk_1.1.0.1  xfun_0.16          globals_0.12.5     lifecycle_0.2.0   
-[37] scales_1.1.1       hms_0.5.3          promises_1.1.1     parallel_4.0.2    
-[41] yaml_2.2.1         memoise_1.1.0      stringi_1.4.6      e1071_1.7-3       
-[45] filelock_1.0.2     storr_1.2.1        rlang_0.4.7        pkgconfig_2.0.3   
-[49] evaluate_0.14      lattice_0.20-41    labeling_0.3       htmlwidgets_1.5.1 
-[53] bit_4.0.4          tidyselect_1.1.0   magrittr_1.5       R6_2.4.1          
-[57] generics_0.0.2     base64url_1.4      txtq_0.2.3         pillar_1.4.6      
-[61] haven_2.3.1        foreign_0.8-79     withr_2.2.0        units_0.6-7       
-[65] modelr_0.1.8       crayon_1.3.4       KernSmooth_2.23-17 progress_1.2.2    
-[69] grid_4.0.2         blob_1.2.1         git2r_0.27.1       reprex_0.3.0      
-[73] digest_0.6.25      classInt_0.4-3     httpuv_1.5.4       munsell_0.5.0     </code></pre>
+ [9] fansi_0.4.1        codetools_0.2-16   knitr_1.29         jsonlite_1.7.0    
+[13] broom_0.7.0        dbplyr_1.4.3       Xmisc_0.2.1        compiler_4.0.2    
+[17] httr_1.4.2         backports_1.1.8    assertthat_0.2.1   cli_2.0.2         
+[21] later_1.1.0.1      htmltools_0.5.0    prettyunits_1.1.1  tools_4.0.2       
+[25] igraph_1.2.5       gtable_0.3.0       glue_1.4.1         wk_0.3.2          
+[29] Rcpp_1.0.5         cellranger_1.1.0   vctrs_0.3.2        crosstalk_1.1.0.1 
+[33] xfun_0.16          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
+[37] hms_0.5.3          promises_1.1.1     parallel_4.0.2     yaml_2.2.1        
+[41] memoise_1.1.0      stringi_1.4.6      e1071_1.7-3        filelock_1.0.2    
+[45] storr_1.2.1        rlang_0.4.7        pkgconfig_2.0.3    evaluate_0.14     
+[49] lattice_0.20-41    labeling_0.3       htmlwidgets_1.5.1  tidyselect_1.1.0  
+[53] magrittr_1.5       R6_2.4.1           generics_0.0.2     base64url_1.4     
+[57] txtq_0.2.3         pillar_1.4.6       haven_2.3.1        whisker_0.4       
+[61] foreign_0.8-79     withr_2.2.0        units_0.6-6        modelr_0.1.7      
+[65] crayon_1.3.4       KernSmooth_2.23-17 progress_1.2.2     grid_4.0.2        
+[69] git2r_0.27.1       reprex_0.3.0       digest_0.6.25      classInt_0.4-3    
+[73] httpuv_1.5.4       munsell_0.5.0     </code></pre>
+</div>
 </div>
 
 
