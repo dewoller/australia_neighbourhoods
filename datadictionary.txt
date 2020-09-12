@@ -1,0 +1,84 @@
+                                                          Table "public.meshblock_concordance"
+       Column       |         Type          | Collation | Nullable | Default | Storage  | Stats target |                  Description                   
+--------------------+-----------------------+-----------+----------+---------+----------+--------------+------------------------------------------------
+ mb_code16          | character varying(11) |           | not null |         | extended |              | Meshblock ID
+ to_mb_code16       | character varying(11) |           | not null |         | extended |              | Meshblock ID of overlapped meshblock
+ distance           | integer               |           | not null |         | plain    |              | Radius in M of coverage circle
+ intersection_area  | double precision      |           |          |         | plain    |              | Coverage of target meshblock in m^2 by circle
+ proportion_covered | numeric               |           |          |         | main     |              | The proportion of the target meshblock covered
+ population_covered | double precision      |           |          |         | plain    |              | The scaled population covered
+ dwelling_covered   | double precision      |           |          |         | plain    |              | The scaled number of dwelling covered
+Indexes:
+    "meshblock_concordance_pk" PRIMARY KEY, btree (mb_code16, to_mb_code16, distance)
+Foreign-key constraints:
+    "meshblock_concordance_fk1" FOREIGN KEY (mb_code16) REFERENCES meshblock_detail(mb_code16)
+    "meshblock_concordance_fk2" FOREIGN KEY (to_mb_code16) REFERENCES meshblock_detail(mb_code16)
+Access method: heap
+
+                                                         Table "public.meshblock_detail"
+        Column         |         Type          | Collation | Nullable | Default | Storage  | Stats target |              Description              
+-----------------------+-----------------------+-----------+----------+---------+----------+--------------+---------------------------------------
+ mb_code16             | character varying(11) |           | not null |         | extended |              | Mesh block ID
+ mb_category_name_2016 | text                  |           |          |         | extended |              | Meshblock landuse category
+ area_albers_sqkm      | double precision      |           |          |         | plain    |              | Size of this meshblock in km^2
+ dwelling              | double precision      |           |          |         | plain    |              | Number of dwellings in this meshblock
+ person                | double precision      |           |          |         | plain    |              | Meshblock population
+ state                 | double precision      |           |          |         | plain    |              | Meshblock state code
+ ra_code16             | character varying(2)  |           |          |         | extended |              | Meshblock remote area code
+ sa1_main16            | character varying(11) |           |          |         | extended |              | Meshblock SA1 code
+Indexes:
+    "meshblock_detail_pk" PRIMARY KEY, btree (mb_code16)
+    "meshblock_detail_mb_code16_idx" UNIQUE, btree (mb_code16)
+    "meshblock_detail_mb_category_name_2016_idx" btree (mb_category_name_2016)
+Foreign-key constraints:
+    "meshblock_detail_fk1" FOREIGN KEY (ra_code16) REFERENCES remote_detail(ra_code16)
+    "meshblock_detail_fk2" FOREIGN KEY (sa1_main16) REFERENCES sa1_seifa(sa1_main16)
+Referenced by:
+    TABLE "meshblock_concordance" CONSTRAINT "meshblock_concordance_fk1" FOREIGN KEY (mb_code16) REFERENCES meshblock_detail(mb_code16)
+    TABLE "meshblock_concordance" CONSTRAINT "meshblock_concordance_fk2" FOREIGN KEY (to_mb_code16) REFERENCES meshblock_detail(mb_code16)
+    TABLE "meshblock_statistics" CONSTRAINT "meshblock_statistics_fk1" FOREIGN KEY (mb_code16) REFERENCES meshblock_detail(mb_code16)
+Access method: heap
+
+                                                                                                        Table "public.meshblock_statistics"
+        Column         |         Type          | Collation | Nullable | Default | Storage  | Stats target |                                                               Description                                                               
+-----------------------+-----------------------+-----------+----------+---------+----------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------
+ mb_code16             | character varying(11) |           | not null |         | extended |              | Meshblock ID
+ distance              | integer               |           | not null |         | plain    |              | neighbourhood radius in metres
+ mb_category_name_2016 | text                  |           | not null |         | extended |              | details for this type of landuse neighbourhood
+ intersection_area     | double precision      |           |          |         | plain    |              | total m^2 overlap between the distance radius neighbourhood of the centroid of this meshblock and this mb_category_name type of landuse
+ population_covered    | double precision      |           |          |         | plain    |              | Population covered in this type of landuse, scaled proportionally to coverage of the target meshblock
+ dwelling_covered      | double precision      |           |          |         | plain    |              | Dwellings covered in this type of landuse, scaled proportionally to coverage of the target meshblock
+ n_mb                  | bigint                |           |          |         | plain    |              | Number of meshblocks of this category intersected by the distance radius circle from the centroid of the source meshblock.
+ category_proportion   | numeric               |           |          |         | main     |              | The proportion of the source meshblock's neighbourhood occupied by this landuse category
+Indexes:
+    "meshblock_statistics_pk" PRIMARY KEY, btree (mb_code16, distance, mb_category_name_2016)
+Foreign-key constraints:
+    "meshblock_statistics_fk1" FOREIGN KEY (mb_code16) REFERENCES meshblock_detail(mb_code16)
+Access method: heap
+
+                                        Table "public.remote_detail"
+  Column   |         Type          | Collation | Nullable | Default | Storage  | Stats target | Description 
+-----------+-----------------------+-----------+----------+---------+----------+--------------+-------------
+ ra_code16 | character varying(2)  |           | not null |         | extended |              | 
+ ra_name16 | character varying(50) |           |          |         | extended |              | 
+Indexes:
+    "remote_detail_pk" PRIMARY KEY, btree (ra_code16)
+Referenced by:
+    TABLE "meshblock_detail" CONSTRAINT "meshblock_detail_fk1" FOREIGN KEY (ra_code16) REFERENCES remote_detail(ra_code16)
+Access method: heap
+
+                                                                  Table "public.sa1_seifa"
+   Column   |         Type          | Collation | Nullable | Default | Storage  | Stats target |                         Description                         
+------------+-----------------------+-----------+----------+---------+----------+--------------+-------------------------------------------------------------
+ sa1_7dig16 | character varying(7)  |           |          |         | extended |              | 
+ sa1_main16 | character varying(11) |           | not null |         | extended |              | 11 digit SA1 code
+ irsd       | numeric               |           |          |         | main     |              | Index of Relative Socio-Economic Disadvantage
+ irsad      | numeric               |           |          |         | main     |              | Index of Relative Socio-Economic Advantage and Disadvantage
+ ier        | numeric               |           |          |         | main     |              | Index of Economic Resources
+ ieo        | numeric               |           |          |         | main     |              | Index of Education and Occupation
+Indexes:
+    "sa1_seifa_pk" PRIMARY KEY, btree (sa1_main16)
+Referenced by:
+    TABLE "meshblock_detail" CONSTRAINT "meshblock_detail_fk2" FOREIGN KEY (sa1_main16) REFERENCES sa1_seifa(sa1_main16)
+Access method: heap
+
