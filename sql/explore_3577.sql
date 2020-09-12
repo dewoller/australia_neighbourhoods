@@ -67,15 +67,101 @@ to_md.dwelling * s3.proportion as dwelling_covered
   and mco.distance=5000
 ;
 
-
-set mb_intersection=
-
 select mb_code16,to_mb_code16,distance
 ,mb_intersection,intersection_area,proportion_covered,population_covered,dwelling_covered
-   
+select * from meshblock_statistics;
+
+select mb_code16, distance,  sum(category_proportion)
+from meshblock_statistics
+group by 1,2;
+
+with mult as (
+select mb_code16
+from meshblock_remote mr
+group by 1
+having count(*)>3
+)
+select md.mb_code16, mr.intersect_area, md.area_albers_sqkm, mr.intersect_area*10000/md.area_albers_sqkm
+from meshblock_detail md
+join meshblock_remote mr using (mb_code16)
+join mult using (mb_code16)
+order by md.mb_code16
+;
+
+select *
+from meshblock_remote mr
+where intersect_area=0
+group by 1
+order by mb_code16;
+
+select mb_code16
+from meshblock_remote mr
+where intersect_area=0
+group by 1
+having count(*)>1;
+
+
+with mult as (
+select mb_code16
+from meshblock_remote mr
+where intersect_area>0
+group by 1
+having count(*)>1
+)
+select md.mb_code16, mr.intersect_area, md.area_albers_sqkm, mr.intersect_area*10000/md.area_albers_sqkm
+from meshblock_detail md
+join meshblock_remote mr using (mb_code16)
+join mult using (mb_code16)
+order by md.mb_code16
+;
 
 
 
+
+
+CREATE TABLE sa1_seifa (
+	sa1_7dig16 varchar(7),
+	sa1_main16 varchar(11),
+	irsd numeric,
+	irsad numeric,
+	ier numeric,
+	ieo numeric
+);
+
+
+create table meshblock_remote_full
+as select * from meshblock_remote
+where intersect_area>0;
+
+create index on meshblock_remote_full( mb_code16);
+
+select max(ra_code16) from meshblock_remote_full;
+
+alter table meshblock_detail add ra_code16 varchar(2);
+
+update meshblock_detail md set ra_code16 = mr.ra_code16
+from meshblock_remote_full mr where mr.mb_code16 = md.mb_code16;
+
+select count(*) from (
+
+select  mb_code16 
+from meshblock_detail
+except
+select  mb_code16 
+from meshblock_remote_full
+
+) p;
+
+
+with na as (
+select  mb_code16 
+from meshblock_detail
+except
+select  mb_code16 
+from meshblock_remote_full)
+select * 
+from meshblock_detail 
+join na using (mb_code16)
 
 
 
