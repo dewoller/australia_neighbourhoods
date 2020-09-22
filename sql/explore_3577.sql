@@ -67,16 +67,13 @@ to_md.dwelling * s3.proportion as dwelling_covered
   and mco.distance=5000
 ;
 
+select mb_code16,to_mb_code16,distance
+,mb_intersection,intersection_area,proportion_covered,population_covered,dwelling_covered
 select * from meshblock_statistics;
 
 select mb_code16, distance,  sum(category_proportion)
 from meshblock_statistics
 group by 1,2;
-
-
-
-
-
 
 with mult as (
 select mb_code16

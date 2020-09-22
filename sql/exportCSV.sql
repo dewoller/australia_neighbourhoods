@@ -1,7 +1,9 @@
-COPY meshblock_concordance TO /tmp/meshblock_concordance.csv DELIMITER ',' CSV HEADER;
-COPY meshblock_detail TO /tmp/meshblock_detail.csv DELIMITER ',' CSV HEADER;
-COPY meshblock_statistics TO /tmp/meshblock_statistics.csv DELIMITER ',' CSV HEADER;
-COPY remote_detail TO /tmp/remote_detail.csv DELIMITER ',' CSV HEADER;
-COPY sa1_seifa TO /tmp/sa1_seifa.csv DELIMITER ',' CSV HEADER;
+
+
+\copy meshblock_concordance TO '/store/export/meshblock_concordance.csv' with (format csv,header true, delimiter ',');
+\copy meshblock_detail TO '/store/export/meshblock_detail.csv' with (format csv,header true, delimiter ',');
+\copy meshblock_statistics TO '/store/export/meshblock_statistics.csv' with (format csv,header true, delimiter ',');
+\copy remote_detail TO '/store/export/remote_detail.csv' with (format csv,header true, delimiter ',');
+\copy sa1_seifa TO '/store/export/sa1_seifa.csv' with (format csv,header true, delimiter ',');
 
 

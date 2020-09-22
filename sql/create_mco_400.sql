@@ -21,8 +21,6 @@ and mco.distance=400
 ;
 
 
-
-
 with pairs_mco as (
   select mc.mb_code16 as mb_code16, mb.mb_code16 as to_mb_code16, mc.buffer_400, mb.geom as to_mb_geom
   FROM meshblock_centroid mc
@@ -44,9 +42,6 @@ from meshblock_detail to_md
 , lateral (values(round(cast(s2.area / (to_md.area_albers_sqkm*1000000) as numeric), 2))) as s3(proportion)
 where to_md.mb_code16 = mco.to_mb_code16 
 ;
-
-
-
 
 
 
