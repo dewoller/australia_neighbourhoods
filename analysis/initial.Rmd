@@ -70,6 +70,63 @@ oneGraphSet(400)
 
 ```
 
+# Social unrest index
+Population density of a meshblock vs population density of it's neighbours
+```{r}
+
+
+dbGetQuery(con, glue::glue("
+                           with mb_cities as (
+                                              select mb_code16, gcc_name16
+                                              from meshblock
+                                              where gcc_code16 like '_G%' or gcc_code16 = '8ACTE'
+                           )
+ select md.person,  md.area_albers_sqkm, md.state, md.ra_code16, ms.*, mc.gcc_name16
+from meshblock_statistics ms
+join meshblock_detail md using (mb_code16)
+join mb_cities mc using (mb_code16)
+where distance=5000
+and ms.mb_category_name_2016='Residential'
+and md.mb_category_name_2016='Residential'
+  ")) %>%
+  as_tibble() %>%
+  { . } -> df_stats
+
+df_stats %>%
+  filter( area_albers_sqkm>1)  %>%
+  mutate( pps = person/area_albers_sqkm ) %>%
+  arrange(desc(pps))
+
+
+  df_stats %>%
+    mutate( pps = person/area_albers_sqkm ) %>%
+    filter( area_albers_sqkm>.1)  %>%
+    mutate(state=as.factor(state)) %>%
+  ggplot( aes( y=pps, x=population_covered, color=gcc_name16)) +
+  geom_point()
+
+df_stats %>%
+  mutate( pps = person/area_albers_sqkm/population_covered ) %>%
+  filter( area_albers_sqkm>.1)  %>%
+  mutate(state=as.factor(state)) %>%
+  ggplot( aes( y=pps, x=gcc_name16)) +
+  scale_y_log10() +
+  geom_violin()
+
+
+
+  df_stats %>%
+  filter(mb_category_name_2016 %in% c('Residential','Commercial','Parkland')) %>%
+  ggplot( aes( y=category_proportion, x=gcc_name16, fill=gcc_name16 )) +
+  geom_violin() +
+  facet_wrap( ~mb_category_name_2016, scales='free', ncol=1) +
+  coord_flip() +
+  ggtitle( "Neighbourhood Category Proportion for Residential, Commerical and Parklands around all Residential Meshblocks"   ) %>%
+  { . } -> p
+  print(p)
+
+
+```
 
 Sq km for each category, for each distance, for each
 source_category = residential
@@ -85,4 +142,6 @@ Walkability - commercial, parklands, residential
 
 street connections
 
+# datasets
 
+Meshblock level -

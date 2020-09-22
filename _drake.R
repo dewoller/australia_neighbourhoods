@@ -1,5 +1,5 @@
 ## Load your packages, e.g. library(drake).
-source("./packages.R")
+suppressMessages( suppressWarnings( source("./packages.R")))
 
 ## Load your R files
 lapply(list.files("./R", full.names = TRUE), source)

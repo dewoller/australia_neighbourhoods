@@ -54,11 +54,12 @@ the_plan <-
                                       distinct( mb_category_name_2016)
                                     ),
              df_mesh_centroids = calc_centroids( map_mesh),
+             df_mesh_centroids_sample = sample_n( df_mesh_centroids, 10),
 
 
-             # df_mesh_within_range = target( point_within_geo_dist( df_mesh_centroids, 'MB_CODE16', 'geometry',
-             # map_mesh, 'MB_CODE16', 'geometry',
-             # max_dist=5000)),
+              df_mesh_within_range = target( point_within_geo_dist( df_mesh_centroids_sample, 'MB_CODE16', 'geometry',
+              map_mesh, 'MB_CODE16', 'geometry',
+              max_dist=5000)),
 
              # df_parks_within_range = target(
              # df_mesh_within_range %>%

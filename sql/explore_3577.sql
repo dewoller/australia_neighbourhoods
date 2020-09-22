@@ -167,6 +167,11 @@ from meshblock_detail
 join na using (mb_code16)
 
 
+create view meshblock_cities as (
+select mb_code16, gcc_name16
+from meshblock
+where gcc_code16 like '_G%' or gcc_code16 = '8ACTE');
+ 
 
 
 

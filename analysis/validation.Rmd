@@ -1,0 +1,53 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+    workflowr::wflow_html:
+      toc: false
+      editor_options:
+    chunk_output_type: console
+---
+
+
+```{r data_prep, include=FALSE}
+source('_drake.R')
+
+con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
+                              user="dewoller", password=db_password,
+                              host="alf", port=5432, dbname="postgis_db")
+
+
+dbGetQuery(con, glue::glue("
+                           select mb_code16, distance, 
+                           sum(intersection_area)::numeric as area, sum( category_proportion) as prop
+                           from meshblock_statistics
+                           group by 1,2 ")) %>%
+                           as_tibble() %>%
+                           { . } -> df_stats
+
+```
+
+#  Histogram
+
+
+```{r}
+
+df_stats %>% 
+  mutate( distance_category = as.factor(distance)) %>%
+  mutate(area=area/1000000) %>%
+  ggplot( aes( area, fill=distance_category)) +
+  geom_histogram() + 
+  facet_wrap( vars( distance ), ncol=1, scales='free')  %>% 
+  { . } -> p
+
+ggsave( p, '/tmp/togo.png')
+
+```
+
+Number of meshblocks with no geography
+Number of meshblocks with no geography
+
+
+
+
+
