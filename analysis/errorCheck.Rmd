@@ -1,0 +1,231 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+    workflowr::wflow_html:
+      toc: false
+---
+```
+
+
+# compare R calculated neighbourhoods with SQL calculated neighbourhood
+
+We recalculated a 1% random sample of meshblock neighbourhoods using the R sf package (n=3581), for each of the four neighbourhood distance threshholds.  We reused the centroids calculated by postgis, because it is a weighted geographic centroid that is not the same as the centroid returned by the sf package. The R calculated neighbourhoods were broad similar to those calculated by postGIS, with all parameters within .05% of each other.  The reason for the difference are as follows:
+
+- differences in the methods of transformation between spatial reference systems
+- differences in the way the buffer around the centroid is calculated (e.g. the number of segments in the circle around the centroid)
+
+
+Postgis has about 0.58% larger area calculations than R
+
+
+
+```{r data_prep, include=FALSE}
+source('_drake.R')
+
+
+  c(400,1000,2000, 5000) %>%
+  enframe(name=NULL, value='distance') %>%
+  mutate( area_max = distance ^2 * pi) %>%
+  { . } -> distance_theoretical_totals
+
+loadd(df_mesh_centroids_sample )
+
+bind_rows(
+          readd(df_mesh_within_range_400) ,
+          readd(df_mesh_within_range_1000),
+          readd(df_mesh_within_range_2000),
+          readd(df_mesh_within_range_5000)
+          ) %>%
+mutate( intersection_area = as.numeric( intersection_area)) %>%
+{ . } -> df_mesh_within_range_area
+
+
+
+df_mesh_centroids_sample  %>%
+  anti_join( df_mesh_within_range_area)
+
+   df_mesh_within_range_area %>%
+   count( mb_code16, distance)
+
+df_mesh_within_range_area %>%
+  group_by(mb_code16, mb_cat16.1, distance) %>%
+  summarise(
+            intersection_area=sum(intersection_area),
+            .groups='drop'
+  ) %>%
+  rename( mb_category_name_2016=mb_cat16.1 ) %>%
+  { . } -> df_c_r
+
+
+
+df_c_r %>%
+  group_by( mb_code16, distance) %>%
+  summarise( intersection_area = sum( intersection_area), .groups='drop') %>%
+  { . } -> df_c_r_total
+
+
+```
+
+# Load in postgis calculated data
+
+```{r load_postgis}
+
+################################################################################yy#####
+
+  con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
+                                user="dewoller", password=db_password,
+                                host="localhost", port=5432, dbname="postgis_db")
+
+dbGetQuery(con, "
+           ---
+             select mb.mb_code16, distance, mb.to_mb_code16, intersection_area, proportion_covered
+           from meshblock_concordance mb
+           join meshblock_detail md using (mb_code16)
+           join df_mesh_centroids_sample sample using (mb_code16)
+           ---
+             " ) %>%
+           as_tibble() %>%
+           { . } -> df_concordance_sql
+
+  dbGetQuery(con, "
+             ---
+select mb.mb_code16, distance, mb.mb_category_name_2016, population_covered, intersection_area, category_proportion
+from meshblock_statistics mb
+join meshblock_detail md using (mb_code16)
+join df_mesh_centroids_sample sample using (mb_code16)
+---
+" ) %>%
+as_tibble() %>%
+{ . } -> df_c_sql
+
+df_c_sql %>%
+  group_by( mb_code16, distance) %>%
+  summarise( intersection_area = sum( intersection_area), .groups='drop') %>%
+  { . } -> df_c_sql_total
+################################################################################yy#####
+
+
+```
+
+# analysis - comparison at category level
+ - difference is the R calculated amount - SQL calculated amount at land use level
+```{r}
+
+################################################################################yy#####
+
+
+df_c_sql  %>%
+  full_join( df_c_r, by=c( 'mb_code16', 'mb_category_name_2016', 'distance' ), suffix=c('.c_r','.c_sql')) %>%
+mutate( diff= intersection_area.c_r - intersection_area.c_sql,
+       pct = diff / intersection_area.c_sql) %>%
+arrange( desc( diff)) %>%
+arrange( desc( pct)) %>%
+{ . } -> df_diff
+
+df_diff %>%
+  drop_na() %>%
+  summarise( across( where(is.numeric), .fns=c('mean'=mean, 'median'=median)))
+
+
+df_diff %>%
+ggplot( aes( diff)) + geom_histogram()
+
+df_diff %>%
+  ggplot( aes( diff)) + geom_histogram() +
+  facet_wrap(~distance, scale='free')
+
+
+df_diff %>%
+  ggplot( aes( intersection_area.c_sql, intersection_area.c_r, color=as.factor(distance))) +
+  geom_point()
+
+df_diff %>%
+  filter( distance == 400)
+
+```
+
+# grand total area coverage
+- note that R calculated total is consistently less than the SQL calculated total
+```{r }
+
+df_c_sql_total  %>%
+  full_join( df_c_r_total, by=c( 'mb_code16', 'distance'), suffix=c('.c_r','.c_sql')) %>%
+  inner_join( distance_theoretical_totals, by='distance') %>%
+  mutate( diff= as.numeric(intersection_area.c_sql) - intersection_area.c_r ) %>%
+  mutate( diff_from_max.c_r = area_max -   intersection_area.c_r) %>%
+  mutate( diff_from_max.c_sql = area_max -   intersection_area.c_sql) %>%
+  arrange( desc( diff)) %>%
+  { . } -> df_diff_total
+
+df_diff_total %>%
+  ggplot( aes( diff)) + geom_histogram() +
+facet_wrap(~distance, scale='free')
+
+df_diff_total %>%
+  ggplot( aes( diff_from_max.c_sql)) + geom_histogram() +
+  facet_wrap(~distance, scale='free')
+
+df_diff_total %>%
+  ggplot( aes( diff_from_max.c_r)) + geom_histogram() +
+  facet_wrap(~distance, scale='free')
+
+df_diff_total %>%
+ggplot( aes( diff_from_max.c_r, diff_from_max.c_sql)) +
+geom_point() +
+  facet_wrap(~distance, scale='free')
+
+df_diff_total %>%
+  ggplot( aes( intersection_area.c_sql, intersection_area.c_r)) +
+  geom_point() +
+  facet_wrap(~distance, scale='free')
+
+df_diff_total %>%
+  ggplot( aes( intersection_area.c_sql, intersection_area.c_r, color=as.factor(distance))) +
+  geom_point()
+
+df_c_r_total %>%
+  arrange( ( intersection_area)) %>%
+  ggplot( aes( intersection_area)) + geom_histogram()
+
+
+df_diff_total %>%
+  summarise( across(where(is_numeric), .fns=sum) ) %>% gt()
+
+df_diff_total %>%
+  group_by(distance) %>%
+  summarise( across(where(is_numeric), .fns=sum) )  %>% gt()
+
+df_c_r %>%
+  filter( mb_code16 == '50113130000')
+
+```
+
+
+
+# compare individual concordances
+
+```{r compare_concordances}
+
+df_mesh_within_range_area %>%
+  rename( to_mb_code16 = mb_code16.1) %>%
+  inner_join( df_concordance_sql, by=c('mb_code16','to_mb_code16', 'distance'), suffix=c('.c_r','.c_sql')) %>%
+  mutate( diff= intersection_area.c_r - intersection_area.c_sql,
+         pct = diff / intersection_area.c_sql) %>%
+  { . } -> df_both_concord
+
+
+df_both_concord %>%
+  drop_na() %>%
+  filter( pct != Inf) %>%
+  select(diff, pct) %>%
+  summarise( across( where(is.numeric), .fns=c('mean'=mean, 'median'=median)))
+
+df_both_concord %>%
+drop_na() %>%
+filter( pct != Inf) %>%
+group_by(distance) %>%
+select(diff, pct) %>%
+summarise( across( where(is.numeric), .fns=c('mean'=mean, 'median'=median)))
+
+```
