@@ -229,3 +229,28 @@ select(diff, pct) %>%
 summarise( across( where(is.numeric), .fns=c('mean'=mean, 'median'=median)))
 
 ```
+
+```{r total_summary}
+
+dbGetQuery(con, "
+           ---
+             select mb.mb_code16, distance, mb.mb_category_name_2016, population_covered, intersection_area, category_proportion
+           from meshblock_statistics mb
+           join meshblock_detail md using (mb_code16)
+           ---
+             " ) %>%
+           as_tibble() %>%
+           { . } -> df_c_sql_all
+
+         df_c_sql_all %>%
+           group_by( mb_code16, distance) %>%
+           summarise( intersection_area = sum( intersection_area), .groups='drop') %>%
+           { . } -> df_c_sql_total
+
+         df_c_sql_total %>%
+           mutate(distance=as.factor(distance)) %>%
+           ggplot( aes( intersection_area, fill=distance)) +
+           geom_histogram()  +
+           facet_wrap(~distance, scale='free')
+
+```
