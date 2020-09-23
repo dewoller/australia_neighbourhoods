@@ -416,16 +416,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstree925cfca2a78f40c9ce76998c32edbe3f64d5926ftargetblank925cfcaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/australia_neighbourhoods/tree/925cfca2a78f40c9ce76998c32edbe3f64d5926f" target="_blank">925cfca</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreeca47938c5b18d14c8baa7d0472ed1c0fb6c6540btargetblankca47938a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/australia_neighbourhoods/tree/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b" target="_blank">ca47938</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstree925cfca2a78f40c9ce76998c32edbe3f64d5926ftargetblank925cfcaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreeca47938c5b18d14c8baa7d0472ed1c0fb6c6540btargetblankca47938a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/dewoller/australia_neighbourhoods/tree/925cfca2a78f40c9ce76998c32edbe3f64d5926f" target="_blank">925cfca</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/dewoller/australia_neighbourhoods/tree/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b" target="_blank">ca47938</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -438,17 +438,6 @@ Ignored files:
     Ignored:    .drake/keys/
     Ignored:    .drake/scratch/
     Ignored:    data/
-
-Untracked files:
-    Untracked:  R/write_table.R
-
-Unstaged changes:
-    Modified:   R/calc_centroids.R
-    Modified:   R/plan.R
-    Modified:   R/point_within_geo_dist.R
-    Modified:   packages.R
-    Deleted:    sql/postgis_create_3577.sql
-    Modified:   sql/postgis_create_meshblock_centroid.sql
 
 </code></pre>
 <p>
@@ -487,6 +476,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b/analysis/errorCheck.Rmd" target="_blank">ca47938</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+<td>
+workflowr::wflow_publish(“analysis/errorCheck.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/errorCheck.html" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -590,17 +613,128 @@ ggplot( aes( diff)) + geom_histogram()</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>Warning: Removed 102 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-1-1.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff %&gt;%
   ggplot( aes( diff)) + geom_histogram() +
   facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>Warning: Removed 102 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
+Past versions of unnamed-chunk-1-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-1-2.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff %&gt;%
   ggplot( aes( intersection_area.c_sql, intersection_area.c_r, color=as.factor(distance))) +
   geom_point()</code></pre>
 <pre><code>Warning: Removed 102 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-3">
+Past versions of unnamed-chunk-1-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-1-3.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff %&gt;%
   filter( distance == 400)</code></pre>
 <pre><code># A tibble: 10,235 x 9
@@ -638,35 +772,294 @@ df_diff_total %&gt;%
 facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-1.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
   ggplot( aes( diff_from_max.c_sql)) + geom_histogram() +
   facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-2">
+Past versions of unnamed-chunk-2-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-2.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
   ggplot( aes( diff_from_max.c_r)) + geom_histogram() +
   facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-3">
+Past versions of unnamed-chunk-2-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-3.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
 ggplot( aes( diff_from_max.c_r, diff_from_max.c_sql)) +
 geom_point() +
   facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-4">
+Past versions of unnamed-chunk-2-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-4.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
   ggplot( aes( intersection_area.c_sql, intersection_area.c_r)) +
   geom_point() +
   facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-5">
+Past versions of unnamed-chunk-2-5.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-5.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
   ggplot( aes( intersection_area.c_sql, intersection_area.c_r, color=as.factor(distance))) +
   geom_point()</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-6">
+Past versions of unnamed-chunk-2-6.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-6.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_c_r_total %&gt;%
   arrange( ( intersection_area)) %&gt;%
   ggplot( aes( intersection_area)) + geom_histogram()</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/errorCheck.Rmd/unnamed-chunk-2-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-7">
+Past versions of unnamed-chunk-2-7.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/figure/errorCheck.Rmd/unnamed-chunk-2-7.png" target="_blank">43d374d</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>df_diff_total %&gt;%
   summarise( across(where(is_numeric), .fns=sum) ) %&gt;% gt()</code></pre>
 <pre><code>Warning: Deprecated
@@ -1494,6 +1887,28 @@ summarise( across( where(is.numeric), .fns=c(&#39;mean&#39;=mean, &#39;median&#3
 2     1000      217.     1.80e-8 44162.     9.65e-13
 3     2000      279.     6.41e-9    14.7    3.22e-13
 4     5000      372.     2.24e-9  2397.     1.10e-13</code></pre>
+<pre class="r"><code>dbGetQuery(con, &quot;
+           ---
+             select mb.mb_code16, distance, mb.mb_category_name_2016, population_covered, intersection_area, category_proportion
+           from meshblock_statistics mb
+           join meshblock_detail md using (mb_code16)
+           ---
+             &quot; ) %&gt;%
+           as_tibble() %&gt;%
+           { . } -&gt; df_c_sql_all
+
+         df_c_sql_all %&gt;%
+           group_by( mb_code16, distance) %&gt;%
+           summarise( intersection_area = sum( intersection_area), .groups=&#39;drop&#39;) %&gt;%
+           { . } -&gt; df_c_sql_total
+
+         df_c_sql_total %&gt;%
+           mutate(distance=as.factor(distance)) %&gt;%
+           ggplot( aes( intersection_area, fill=distance)) +
+           geom_histogram()  +
+           facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="figure/errorCheck.Rmd/total_summary-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
