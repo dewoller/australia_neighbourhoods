@@ -1,9 +1,11 @@
 mesh_detail_file="data/2016 census mesh block counts.xls"
 
+set.seed(1234)
+max_distance_range = c(400,1000,2000,5000)
+
 the_plan <-
   drake_plan(
 
-             max_distance = c(1,5),
 
              # get mesh shapefiles for all mesh blocks in Australia
              map_mesh=
@@ -54,12 +56,19 @@ the_plan <-
                                       distinct( mb_category_name_2016)
                                     ),
              df_mesh_centroids = calc_centroids( map_mesh),
-             df_mesh_centroids_sample = sample_n( df_mesh_centroids, 10),
+             df_mesh_centroids_sample = sample_n( df_mesh_centroids, 3581),
+
+             # df_mesh_centroids_sample = df_mesh_centroids %>%
+             #   filter( !st_is_empty( geometry)) %>%
+             #   filter( mb_code16 == '20632003050'),
+#             df_mesh_centroids_sample = sample_n( df_mesh_centroids, 4),
 
 
-              df_mesh_within_range = target( point_within_geo_dist( df_mesh_centroids_sample, 'MB_CODE16', 'geometry',
-              map_mesh, 'MB_CODE16', 'geometry',
-              max_dist=5000)),
+             df_mesh_within_range =
+               target( point_within_geo_dist( df_mesh_centroids_sample, map_mesh, max_dist=max_distance),
+                      transform = cross(max_distance = c(400,1000,2000,5000)  )),
+             result1 = write_table( df_mesh_centroids_sample),
+
 
              # df_parks_within_range = target(
              # df_mesh_within_range %>%

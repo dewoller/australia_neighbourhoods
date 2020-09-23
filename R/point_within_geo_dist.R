@@ -2,116 +2,80 @@ if (FALSE) {
 
   source('_drake.R')
 
-  readd(map_mesh) %>%
-    head(2000) %>%
+  loadd(map_mesh)
+
+read_table('
+  mb_code16
+  20300752000
+  20301030000
+  20354450000
+  20354520000
+  20608400000
+  20608410000
+  20608660000
+  20631915840
+  20631915850
+  20631941300
+  20631946960
+  20631958480
+  20631958490
+  20631967000
+  20631967010
+  20631967020
+  20631967030
+  20631967160
+  20631995920
+  20631999610
+  20632000610
+  20632003050
+  20632003770
+  ') %>%
+  mutate( mb_code16=as.character(mb_code16)) %>%
+  { . } -> target
+
+  map_mesh %>%
+    select(mb_code16, geometry, mb_cat16) %>%
+    inner_join(target) %>%
     { . } -> df_to_geo
 
 
-  readd(df_mesh_centroids) %>%
-    head(20) %>%
+  loadd(df_mesh_centroids)
+
+    df_mesh_centroids %>%
+    filter( !st_is_empty( geometry)) %>%
+    filter( mb_code16 == '20632003050') %>%
+    select(-mb_cat16) %>%
     { . } -> df_from_point
 
-  id_point = 'MB_CODE16'
-  from_point='geometry'
-  id_geo = 'MB_CODE16'
-  to_geo = 'geometry'
   max_dist=5000
 
  a= point_within_geo_dist( df_from_point, 'MB_CODE16', 'geometry', df_to_geo, 'MB_CODE16', 'geometry', 5000)
 
- a %>%
-   select(results) %>%
-   mutate( error = map(results,2)) %>%
-   mutate( results = map(results,1)) %>%
-   unnest(col=results)
 
 }
 
 
 point_within_geo_dist_test = function()
 {
-  point_within_geo_dist( df_from_point, 'MB_CODE16', 'geometry', df_to_geo, 'MB_CODE16', 'geometry', 5000)
+  point_within_geo_dist( df_from_point,  df_to_geo, 5000)
 
 
 }
 
 # find all to_geo's that intersect a max_dist circle around from_points
-point_within_geo_dist <- function( df_from_point, id_point = 'MB_CODE16', from_point='point',
-                                  df_to_geo, id_geo = 'MB_CODE16', to_geo = 'geometry',
-                                  max_dist=5000) {
+point_within_geo_dist <- function( df_from_point, df_to_geo, max_dist=5000) {
 
-
-  num_groups = future::availableCores() * 100
-
-  new_cluster(num_groups) %>%
-    cluster_copy(c("do_one_point_within_geo_dist", 'df_to_geo','try_do_one_point_within_geo' )) %>%
-    cluster_library( c('s2', 'dplyr', 'rlang', 'sf', 'purrr', 'tidyr', 'readr')) %>%
-    { . } -> cluster
-
-  safe_do_one_point = safely( try_do_one_point_within_geo, otherwise=list())
-
-   #browser()
-
+  print(max_dist)
   df_from_point %>%
-    mutate( partition = (row_number()-1) %/% (n()/num_groups)) %>%
-    group_by( partition ) %>%
-    nest() %>%
-#    partition(cluster) %>%
-    mutate( results = map( data, ~try_do_one_point_within_geo(.x, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist)))  %>%
-#    collect() %>%
-    ungroup() #%>%
- #   select(results) %>%
- #   mutate( error = map(results,2)) %>%
- #   mutate( results = map(results,1)) %>%
- #   unnest(col=results)
-
-}
-
-
-try_do_one_point_within_geo <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
-
-  cat('Starting', file='run.log', append=TRUE)
-  write_csv( df_from_point, 'starting.csv', append=TRUE)
-
-tryCatch(
-           do_one_point_within_geo_dist( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) ,
-           finally=FALSE
-
-  ) -> a
-
-  cat('ending', file='run.log', append=TRUE)
-  write_csv( df_from_point, 'ending.csv', append=TRUE)
-  write_csv( a, 'ending_results.csv', append=TRUE)
-  a
-
-}
-
-
-do_one_point_within_geo_dist <- function( df_from_point, id_point , from_point, df_to_geo, id_geo , to_geo , max_dist) {
-
-  output_id = 'to'
-  df_to_geo %>%
-    mutate( s2_geo=s2_geog_from_wkb(st_as_binary( !!sym( to_geo )), check=FALSE)) %>%
+    st_as_sf( ) %>%
+    st_transform('+init=EPSG:3577') %>%
+    st_buffer(  max_dist ) %>%
+    st_intersection(  df_to_geo %>%
+                    select(mb_code16, mb_cat16, geometry) %>%
+                    st_transform( '+init=EPSG:3577'  )) %>%
+    mutate(intersection_area = st_area(geometry) %>% as.numeric(),
+           distance=max_dist) %>%
     st_drop_geometry() %>%
-    select( !!sym( id_geo ), s2_geo) %>%
-    { . } -> df_to_geo_s2
-
-  df_from_point  %>%
-    mutate( s2_point=s2_geog_from_wkb(st_as_binary(!!sym(from_point)), check=FALSE)) %>%
-    st_drop_geometry() %>%
-    select( !!sym( id_point ), s2_point) %>%
-    { . } -> df_from_point_s2
-
-  df_from_point_s2 %>%
-    mutate( to_row = map( s2_point, ~s2_dwithin_matrix( .x, df_to_geo_s2 %>%
-                                                       pluck('s2_geo'),
-                                                     max_dist))) %>%
-  mutate( to_row = map(to_row, 1 )) %>%
-  select(-s2_point) %>%
-  mutate( !!output_id  := map( to_row, function(x) { df_to_geo_s2[ x, id_geo ] })) %>%
-  select(-to_row) %>%
-  unnest( !!output_id, names_sep='_'  ) %>%
-  mutate( max_dist = max_dist)
-
+    as_tibble()
 
 }

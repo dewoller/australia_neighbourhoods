@@ -55,6 +55,7 @@ library(rgeos)
 library(workflowr)
 library(leaflet)
 library(DT)
+library(gt)
 
 library(rvest)
 conflict_prefer("pluck", "purrr")
