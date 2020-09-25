@@ -1,0 +1,73 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+    workflowr::wflow_html:
+      toc: false
+      editor_options:
+    chunk_output_type: console
+---
+
+
+```{r data_prep, include=FALSE}
+
+source('_drake.R')
+
+con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
+                              user="dewoller", password=db_password,
+                              host="alf", port=5432, dbname="postgis_db")
+
+oneGraphSet = function (buffer_size) {
+
+  cat(glue::glue('\\n# Graphs for {buffer_size} M buffer\\n'))
+
+  dbGetQuery(con, glue::glue("
+             with mb_cities as (
+                                select mb_code16, gcc_name16
+                                from meshblock
+                                where gcc_code16 like '_G%' or gcc_code16 = '8ACTE'
+             )
+             select mb.mb_code16, gcc_name16, mb.mb_category_name_2016, population_covered, intersection_area, category_proportion
+             from
+             meshblock_statistics_{buffer_size} mb
+             join meshblock_detail md using (mb_code16)
+             join mb_cities mc using (mb_code16)
+             where md.mb_category_name_2016 ='Residential'
+             ")) %>%
+             as_tibble() %>%
+             { . } -> df_stats
+
+  df_stats %>%
+    ggplot( aes( y=intersection_area, x=gcc_name16, fill=gcc_name16 )) +
+    geom_violin() +
+    facet_wrap( ~mb_category_name_2016, scales='free', ncol=1) +
+    coord_flip() +
+    ggtitle( "Neighbourhood Category Areas (in m^2) around all Residential Meshblocks"   ) %>%
+    { . } -> p
+  print(p)
+
+  df_stats %>%
+    filter(mb_category_name_2016 %in% c('Residential','Commercial','Parkland')) %>%
+    ggplot( aes( y=category_proportion, x=gcc_name16, fill=gcc_name16 )) +
+    geom_violin() +
+    facet_wrap( ~mb_category_name_2016, scales='free', ncol=1) +
+    coord_flip() +
+    ggtitle( "Neighbourhood Category Proportion for Residential, Commerical and Parklands around all Residential Meshblocks"   ) %>%
+    { . } -> p
+  print(p)
+}
+
+
+```
+
+#  Graphs
+
+```{r graphs, echo=FALSE, fig.height=15, fig.width=10}
+
+oneGraphSet(5000)
+oneGraphSet(2000)
+oneGraphSet(1000)
+oneGraphSet(400)
+
+```
+

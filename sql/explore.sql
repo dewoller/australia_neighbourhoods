@@ -1,4 +1,3 @@
-<<<<<<< HEAD
   alter table meshblock_concordance 
   add column intersection_area float8,
  add column  proportion_covered float8,

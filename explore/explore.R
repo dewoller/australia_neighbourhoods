@@ -39,7 +39,7 @@ map_mesh %>%
     { . } -> b
 
 
-  _centroid() %>%
+ df_centroid() %>%
   st_transform(., '+proj=longlat +ellps=GRS80 +no_defs') %>% # we want the centroids in a second geometry col
   st_coordinates() %>%
     as_tibble() %>%
