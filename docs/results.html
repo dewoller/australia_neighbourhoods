@@ -11,7 +11,7 @@
 
 
 
-<title>About</title>
+<title>Home</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -306,235 +306,78 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About</h1>
+<h1 class="title toc-ignore">Home</h1>
 
 </div>
 
 
+<div id="graphs" class="section level1">
+<h1>Graphs</h1>
+<p># Graphs for 5000 M buffer<img src="figure/results.Rmd/graphs-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-2.png" width="960" style="display: block; margin: auto;" /># Graphs for 2000 M buffer<img src="figure/results.Rmd/graphs-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-4.png" width="960" style="display: block; margin: auto;" /># Graphs for 1000 M buffer<img src="figure/results.Rmd/graphs-5.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-6.png" width="960" style="display: block; margin: auto;" /># Graphs for 400 M buffer<img src="figure/results.Rmd/graphs-7.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-8.png" width="960" style="display: block; margin: auto;" /></p>
+<br>
 <p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
 </button>
 </p>
-<div id="workflowr-report" class="collapse">
-<ul class="nav nav-tabs">
-<li class="active">
-<a data-toggle="tab" href="#summary">Summary</a>
-</li>
-<li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
-</li>
-<li>
-<a data-toggle="tab" href="#versions">Past versions</a>
-</li>
-</ul>
-<div class="tab-content">
-<div id="summary" class="tab-pane fade in active">
-<p>
-<strong>Last updated:</strong> 2020-09-26
-</p>
-<p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
-</p>
-<p>
-<strong>Knit directory:</strong> <code>parks_australia/analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
-</p>
-<p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
-</p>
-<hr>
-</div>
-<div id="checks" class="tab-pane fade">
-<div id="workflowr-checks" class="panel-group">
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
-</p>
-</div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreebcb23f6b1e0a71f0f8e257a655e9e8020e9cf497targetblankbcb23f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/australia_neighbourhoods/tree/bcb23f6b1e0a71f0f8e257a655e9e8020e9cf497" target="_blank">bcb23f6</a> </a>
-</p>
-</div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreebcb23f6b1e0a71f0f8e257a655e9e8020e9cf497targetblankbcb23f6a" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
-</p>
-<p>
-The results in this page were generated with repository version <a href="https://github.com/dewoller/australia_neighbourhoods/tree/bcb23f6b1e0a71f0f8e257a655e9e8020e9cf497" target="_blank">bcb23f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
-</p>
-<p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
-</p>
-<pre><code>
-Ignored files:
-    Ignored:    .drake/config/
-    Ignored:    .drake/data/
-    Ignored:    .drake/drake/
-    Ignored:    .drake/keys/
-    Ignored:    .drake/scratch/
-    Ignored:    data/
-    Ignored:    output/meshblock_commercial.csv
-    Ignored:    output/meshblock_parklands.csv
-    Ignored:    output/meshblock_population_density.csv
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.2 (2020-06-22)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.1 LTS
 
-</code></pre>
-<p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
-</p>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</div>
-<div id="versions" class="tab-pane fade">
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
-<p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/about.Rmd</code>) and HTML (<code>docs/about.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
-</p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/dewoller/australia_neighbourhoods/blob/2696aee3765de3f1504373f1f8f11b3d7e9234b4/analysis/about.Rmd" target="_blank">2696aee</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-25
-</td>
-<td>
-prep for publish
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/2696aee3765de3f1504373f1f8f11b3d7e9234b4/docs/about.html" target="_blank">2696aee</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-25
-</td>
-<td>
-prep for publish
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/a18d383102749c0520b0a5677f037c2374a8851e/docs/about.html" target="_blank">a18d383</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-25
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/dewoller/australia_neighbourhoods/blob/e36ae398ddb99a319e0463c9672ae972a69f1dc6/analysis/about.Rmd" target="_blank">e36ae39</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-25
-</td>
-<td>
-workflowr::wflow_publish(“analysis/about.Rmd”)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/86d6a4f51ebb3559a853357b374afbf77e452a7b/docs/about.html" target="_blank">86d6a4f</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-08-12
-</td>
-<td>
-push
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/dewoller/australia_neighbourhoods/blob/3631d10ca3c0a0721a8b97fa9a2baaddc0127509/analysis/about.Rmd" target="_blank">3631d10</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-08-08
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] rvest_0.3.6           xml2_1.3.2            gt_0.2.2             
+ [4] DT_0.15               leaflet_2.0.3         workflowr_1.6.2      
+ [7] cleangeo_0.2-3        maptools_1.0-2        rgeos_0.5-5          
+[10] sp_1.4-2              geohash_0.4.0         multidplyr_0.0.0.9000
+[13] osrm_3.3.3            RPostgreSQL_0.6-2     DBI_1.1.0            
+[16] furrr_0.1.0           future_1.18.0         fs_1.5.0             
+[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-6             
+[22] janitor_2.0.1         rmarkdown_2.3         lubridate_1.7.9      
+[25] geosphere_1.5-10      forcats_0.5.0         stringr_1.4.0        
+[28] dplyr_1.0.2           purrr_0.3.4           readr_1.3.1          
+[31] tidyr_1.1.0           tibble_3.0.3          ggplot2_3.3.2        
+[34] tidyverse_1.3.0       drake_7.12.5          dotenv_1.0.2         
+[37] conflicted_1.0.4      nvimcom_0.9-102      
+
+loaded via a namespace (and not attached):
+ [1] colorspace_1.4-1   ellipsis_0.3.1     class_7.3-17       rprojroot_1.3-2   
+ [5] snakecase_0.11.0   rstudioapi_0.11    farver_2.0.3       listenv_0.8.0     
+ [9] fansi_0.4.1        codetools_0.2-16   knitr_1.30         jsonlite_1.7.1    
+[13] broom_0.7.0        dbplyr_1.4.4       Xmisc_0.2.1        compiler_4.0.2    
+[17] httr_1.4.2         backports_1.1.10   assertthat_0.2.1   cli_2.0.2         
+[21] later_1.1.0.1      htmltools_0.5.0    prettyunits_1.1.1  tools_4.0.2       
+[25] igraph_1.2.5       gtable_0.3.0       glue_1.4.2         wk_0.3.2          
+[29] Rcpp_1.0.5         cellranger_1.1.0   vctrs_0.3.4        crosstalk_1.1.0.1 
+[33] xfun_0.17          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
+[37] hms_0.5.3          promises_1.1.1     parallel_4.0.2     yaml_2.2.1        
+[41] memoise_1.1.0      stringi_1.5.3      e1071_1.7-3        filelock_1.0.2    
+[45] storr_1.2.1        rlang_0.4.7        pkgconfig_2.0.3    evaluate_0.14     
+[49] lattice_0.20-41    labeling_0.3       htmlwidgets_1.5.1  tidyselect_1.1.0  
+[53] magrittr_1.5       R6_2.4.1           generics_0.0.2     base64url_1.4     
+[57] txtq_0.2.3         pillar_1.4.6       haven_2.3.1        foreign_0.8-79    
+[61] withr_2.3.0        units_0.6-7        modelr_0.1.8       crayon_1.3.4      
+[65] KernSmooth_2.23-17 progress_1.2.2     grid_4.0.2         blob_1.2.1        
+[69] git2r_0.27.1       reprex_0.3.0       digest_0.6.25      classInt_0.4-3    
+[73] httpuv_1.5.4       munsell_0.5.0     </code></pre>
 </div>
 </div>
-</div>
-<p>This project was sponsored by <a href="http://latrobe.edu.au">La Trobe University</a></p>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using

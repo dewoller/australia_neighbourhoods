@@ -7,6 +7,11 @@ output:
 ---
 
 
+  ```{r "setup", include=FALSE}
+knitr::opts_knit$set(root.dir = '..')  # with something else than `getwd()`
+```
+
+
 # compare R calculated neighbourhoods with SQL calculated neighbourhood
 
 We recalculated a 1% random sample of meshblock neighbourhoods using the R sf package (n=3581), for each of the four neighbourhood distance threshholds.  We reused the centroids calculated by postgis, because it is a weighted geographic centroid that is not the same as the centroid returned by the sf package. The R calculated neighbourhoods were broad similar to those calculated by postGIS, with all parameters within .05% of each other.  The reason for the difference are as follows:
@@ -15,7 +20,7 @@ We recalculated a 1% random sample of meshblock neighbourhoods using the R sf pa
 - differences in the way the buffer around the centroid is calculated (e.g. the number of segments in the circle around the centroid)
 
 
-Postgis has about 0.58% larger area calculations than R
+Postgis has about 0.58% larger area calculations than R.
 
 
 
@@ -144,9 +149,6 @@ df_diff %>%
   ggplot( aes( intersection_area.c_sql, intersection_area.c_r, color=as.factor(distance))) +
   geom_point()
 
-df_diff %>%
-  filter( distance == 400)
-
 ```
 
 # grand total area coverage
@@ -194,14 +196,14 @@ df_c_r_total %>%
 
 
 df_diff_total %>%
-  summarise( across(where(is_numeric), .fns=sum) ) %>% gt()
+  summarise( across(where(is_numeric), .fns=sum) ) %>%
+  gt()
 
 df_diff_total %>%
   group_by(distance) %>%
-  summarise( across(where(is_numeric), .fns=sum) )  %>% gt()
+  summarise( across(where(is_numeric), .fns=sum) )  %>%
+  gt()
 
-df_c_r %>%
-  filter( mb_code16 == '50113130000')
 
 ```
 
@@ -233,6 +235,9 @@ select(diff, pct) %>%
 summarise( across( where(is.numeric), .fns=c('mean'=mean, 'median'=median)))
 
 ```
+
+
+# Compare Total Summary
 
 ```{r total_summary}
 

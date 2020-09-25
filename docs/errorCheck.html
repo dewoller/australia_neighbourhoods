@@ -275,12 +275,18 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">parks_australia</a>
+      <a class="navbar-brand" href="index.html">Australian Neighbourhood Land Use Composition</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="results.html">Results</a>
+</li>
+<li>
+  <a href="validation.html">Validation</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -305,235 +311,6 @@ $(document).ready(function () {
 </div>
 
 
-<p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</button>
-</p>
-<div id="workflowr-report" class="collapse">
-<ul class="nav nav-tabs">
-<li class="active">
-<a data-toggle="tab" href="#summary">Summary</a>
-</li>
-<li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
-</li>
-<li>
-<a data-toggle="tab" href="#versions">Past versions</a>
-</li>
-</ul>
-<div class="tab-content">
-<div id="summary" class="tab-pane fade in active">
-<p>
-<strong>Last updated:</strong> 2020-09-24
-</p>
-<p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
-</p>
-<p>
-<strong>Knit directory:</strong> <code>parks_australia/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
-</p>
-<p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
-</p>
-<hr>
-</div>
-<div id="checks" class="tab-pane fade">
-<div id="workflowr-checks" class="panel-group">
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
-</p>
-</div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
-</p>
-</div>
-<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200808code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200808)</code> </a>
-</p>
-</div>
-<div id="strongSeedstrongcodesetseed20200808code" class="panel-collapse collapse">
-<div class="panel-body">
-<p>The command <code>set.seed(20200808)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
-</p>
-</div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
-</p>
-</div>
-<div id="strongCachestrongnone" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
-</p>
-</div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreeca47938c5b18d14c8baa7d0472ed1c0fb6c6540btargetblankca47938a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/australia_neighbourhoods/tree/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b" target="_blank">ca47938</a> </a>
-</p>
-</div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewolleraustralianeighbourhoodstreeca47938c5b18d14c8baa7d0472ed1c0fb6c6540btargetblankca47938a" class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
-</p>
-<p>
-The results in this page were generated with repository version <a href="https://github.com/dewoller/australia_neighbourhoods/tree/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b" target="_blank">ca47938</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
-</p>
-<p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
-</p>
-<pre><code>
-Ignored files:
-    Ignored:    .drake/config/
-    Ignored:    .drake/data/
-    Ignored:    .drake/drake/
-    Ignored:    .drake/keys/
-    Ignored:    .drake/scratch/
-    Ignored:    data/
-
-</code></pre>
-<p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
-</p>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</div>
-<div id="versions" class="tab-pane fade">
-
-<p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/errorCheck.Rmd</code>) and HTML (<code>docs/errorCheck.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
-</p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/dewoller/australia_neighbourhoods/blob/ca47938c5b18d14c8baa7d0472ed1c0fb6c6540b/analysis/errorCheck.Rmd" target="_blank">ca47938</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-24
-</td>
-<td>
-workflowr::wflow_publish(“analysis/errorCheck.Rmd”)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/dewoller/australia_neighbourhoods/43d374d0b8ffc560a3dab5de80599bc8f2f9e850/docs/errorCheck.html" target="_blank">43d374d</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-24
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/dewoller/australia_neighbourhoods/blob/925cfca2a78f40c9ce76998c32edbe3f64d5926f/analysis/errorCheck.Rmd" target="_blank">925cfca</a>
-</td>
-<td>
-Dennis Wollersheim
-</td>
-<td>
-2020-09-24
-</td>
-<td>
-workflowr::wflow_publish(“analysis/errorCheck.Rmd”)
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-</div>
-</div>
-</div>
 <p>```</p>
 <div id="compare-r-calculated-neighbourhoods-with-sql-calculated-neighbourhood" class="section level1">
 <h1>compare R calculated neighbourhoods with SQL calculated neighbourhood</h1>
@@ -1909,6 +1686,491 @@ summarise( across( where(is.numeric), .fns=c(&#39;mean&#39;=mean, &#39;median&#3
            facet_wrap(~distance, scale=&#39;free&#39;)</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/errorCheck.Rmd/total_summary-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-total_summary-1">
+Past versions of total_summary-1.png
+</button>
+</p>
+<div id="fig-total_summary-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/33edcf823540fdde8c8c060598f65d0202a792e4/docs/figure/errorCheck.Rmd/total_summary-1.png" target="_blank">33edcf8</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>df_diff_total %&gt;%
+  select( distance, intersection_area.c_sql, intersection_area.c_r) %&gt;%
+  mutate( across( starts_with(&#39;inter&#39;), .fn=function(x) {x/1000000})) %&gt;%
+  group_by(distance) %&gt;%
+  summarise( across( where(is.numeric), .fns=c(&#39;total&#39;=sum))) %&gt;%
+  mutate( difference = intersection_area.c_sql_total - intersection_area.c_r_total,
+         pct = round(difference / intersection_area.c_sql_total *100,2) )  %&gt;% 
+  { . } -&gt; df_diff_final</code></pre>
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>  df_both_concord %&gt;%
+  select( distance, starts_with(&#39;intersection_area&#39;)) %&gt;%
+  nest( data = -distance) %&gt;%
+  mutate(test = map(data, ~ cor.test(.x$intersection_area.c_r, .x$intersection_area.c_sql)),
+         tidied = map(test, broom::tidy)) %&gt;%
+  mutate(n = map_int(data, nrow)) %&gt;%
+  select(-test, -data) %&gt;%
+  unnest(tidied) %&gt;% 
+  { . } -&gt; df_cor
+
+df_diff_final %&gt;%
+  set_names(c(&#39;Buffer size (m)&#39;, &#39;Postgis Total Area (km^2) &#39;, &#39;R Total Area (km^2)&#39;, &#39;Difference&#39;, &quot;% Difference&quot;)) %&gt;%
+  inner_join( df_cor, by=c(&#39;Buffer size (m)&#39;=&#39;distance&#39;)) %&gt;% 
+  gt()</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xdduhtxcdz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xdduhtxcdz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xdduhtxcdz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xdduhtxcdz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xdduhtxcdz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xdduhtxcdz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xdduhtxcdz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xdduhtxcdz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xdduhtxcdz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xdduhtxcdz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xdduhtxcdz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xdduhtxcdz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xdduhtxcdz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xdduhtxcdz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xdduhtxcdz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xdduhtxcdz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xdduhtxcdz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xdduhtxcdz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xdduhtxcdz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xdduhtxcdz .gt_left {
+  text-align: left;
+}
+
+#xdduhtxcdz .gt_center {
+  text-align: center;
+}
+
+#xdduhtxcdz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xdduhtxcdz .gt_font_normal {
+  font-weight: normal;
+}
+
+#xdduhtxcdz .gt_font_bold {
+  font-weight: bold;
+}
+
+#xdduhtxcdz .gt_font_italic {
+  font-style: italic;
+}
+
+#xdduhtxcdz .gt_super {
+  font-size: 65%;
+}
+
+#xdduhtxcdz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="xdduhtxcdz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Buffer size (m)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Postgis Total Area (km^2) </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">R Total Area (km^2)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">% Difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">parameter</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">method</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">alternative</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">n</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_right">400</td>
+      <td class="gt_row gt_right">1741.501</td>
+      <td class="gt_row gt_right">1731.222</td>
+      <td class="gt_row gt_right">10.27905</td>
+      <td class="gt_row gt_right">0.59</td>
+      <td class="gt_row gt_right">0.9999940</td>
+      <td class="gt_row gt_right">78017.18</td>
+      <td class="gt_row gt_right">0</td>
+      <td class="gt_row gt_center">73252</td>
+      <td class="gt_row gt_right">0.9999939</td>
+      <td class="gt_row gt_right">0.9999941</td>
+      <td class="gt_row gt_left">Pearson's product-moment correlation</td>
+      <td class="gt_row gt_left">two.sided</td>
+      <td class="gt_row gt_center">73254</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_right">1000</td>
+      <td class="gt_row gt_right">10645.570</td>
+      <td class="gt_row gt_right">10583.009</td>
+      <td class="gt_row gt_right">62.56157</td>
+      <td class="gt_row gt_right">0.59</td>
+      <td class="gt_row gt_right">0.9999943</td>
+      <td class="gt_row gt_right">158638.04</td>
+      <td class="gt_row gt_right">0</td>
+      <td class="gt_row gt_center">288354</td>
+      <td class="gt_row gt_right">0.9999942</td>
+      <td class="gt_row gt_right">0.9999943</td>
+      <td class="gt_row gt_left">Pearson's product-moment correlation</td>
+      <td class="gt_row gt_left">two.sided</td>
+      <td class="gt_row gt_center">288356</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_right">2000</td>
+      <td class="gt_row gt_right">41613.122</td>
+      <td class="gt_row gt_right">41369.311</td>
+      <td class="gt_row gt_right">243.81091</td>
+      <td class="gt_row gt_right">0.59</td>
+      <td class="gt_row gt_right">0.9999943</td>
+      <td class="gt_row gt_right">277634.34</td>
+      <td class="gt_row gt_right">0</td>
+      <td class="gt_row gt_center">872587</td>
+      <td class="gt_row gt_right">0.9999943</td>
+      <td class="gt_row gt_right">0.9999944</td>
+      <td class="gt_row gt_left">Pearson's product-moment correlation</td>
+      <td class="gt_row gt_left">two.sided</td>
+      <td class="gt_row gt_center">872589</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_right">5000</td>
+      <td class="gt_row gt_right">249719.289</td>
+      <td class="gt_row gt_right">248264.883</td>
+      <td class="gt_row gt_right">1454.40649</td>
+      <td class="gt_row gt_right">0.58</td>
+      <td class="gt_row gt_right">0.9999926</td>
+      <td class="gt_row gt_right">510589.83</td>
+      <td class="gt_row gt_right">0</td>
+      <td class="gt_row gt_center">3875443</td>
+      <td class="gt_row gt_right">0.9999926</td>
+      <td class="gt_row gt_right">0.9999926</td>
+      <td class="gt_row gt_left">Pearson's product-moment correlation</td>
+      <td class="gt_row gt_left">two.sided</td>
+      <td class="gt_row gt_center">3875445</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1939,11 +2201,11 @@ attached base packages:
 other attached packages:
  [1] rvest_0.3.6           xml2_1.3.2            gt_0.2.2             
  [4] DT_0.15               leaflet_2.0.3         workflowr_1.6.2      
- [7] cleangeo_0.2-3        maptools_1.0-2        rgeos_0.5-3          
+ [7] cleangeo_0.2-3        maptools_1.0-2        rgeos_0.5-5          
 [10] sp_1.4-2              geohash_0.4.0         multidplyr_0.0.0.9000
 [13] osrm_3.3.3            RPostgreSQL_0.6-2     DBI_1.1.0            
 [16] furrr_0.1.0           future_1.18.0         fs_1.5.0             
-[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-5             
+[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-6             
 [22] janitor_2.0.1         rmarkdown_2.3         lubridate_1.7.9      
 [25] geosphere_1.5-10      forcats_0.5.0         stringr_1.4.0        
 [28] dplyr_1.0.2           purrr_0.3.4           readr_1.3.1          
@@ -1954,20 +2216,20 @@ other attached packages:
 loaded via a namespace (and not attached):
  [1] colorspace_1.4-1   ellipsis_0.3.1     class_7.3-17       rprojroot_1.3-2   
  [5] snakecase_0.11.0   rstudioapi_0.11    farver_2.0.3       listenv_0.8.0     
- [9] fansi_0.4.1        codetools_0.2-16   knitr_1.29         jsonlite_1.7.0    
+ [9] fansi_0.4.1        codetools_0.2-16   knitr_1.30         jsonlite_1.7.1    
 [13] broom_0.7.0        dbplyr_1.4.4       Xmisc_0.2.1        compiler_4.0.2    
-[17] httr_1.4.2         backports_1.1.9    assertthat_0.2.1   cli_2.0.2         
+[17] httr_1.4.2         backports_1.1.10   assertthat_0.2.1   cli_2.0.2         
 [21] later_1.1.0.1      htmltools_0.5.0    prettyunits_1.1.1  tools_4.0.2       
 [25] igraph_1.2.5       gtable_0.3.0       glue_1.4.2         wk_0.3.2          
 [29] Rcpp_1.0.5         cellranger_1.1.0   vctrs_0.3.4        crosstalk_1.1.0.1 
-[33] xfun_0.16          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
+[33] xfun_0.17          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
 [37] hms_0.5.3          promises_1.1.1     parallel_4.0.2     yaml_2.2.1        
-[41] memoise_1.1.0      sass_0.2.0         stringi_1.4.6      checkmate_2.0.0   
+[41] memoise_1.1.0      sass_0.2.0         stringi_1.5.3      checkmate_2.0.0   
 [45] e1071_1.7-3        filelock_1.0.2     storr_1.2.1        rlang_0.4.7       
 [49] pkgconfig_2.0.3    evaluate_0.14      lattice_0.20-41    labeling_0.3      
 [53] htmlwidgets_1.5.1  tidyselect_1.1.0   magrittr_1.5       R6_2.4.1          
-[57] generics_0.0.2     base64url_1.4      txtq_0.2.3         pillar_1.4.6      
-[61] haven_2.3.1        whisker_0.4        foreign_0.8-79     withr_2.2.0       
+[57] generics_0.0.2     base64url_1.4      txtq_0.2.3         whisker_0.4       
+[61] pillar_1.4.6       haven_2.3.1        foreign_0.8-79     withr_2.3.0       
 [65] units_0.6-7        modelr_0.1.8       crayon_1.3.4       utf8_1.1.4        
 [69] KernSmooth_2.23-17 progress_1.2.2     grid_4.0.2         blob_1.2.1        
 [73] git2r_0.27.1       reprex_0.3.0       digest_0.6.25      classInt_0.4-3    
