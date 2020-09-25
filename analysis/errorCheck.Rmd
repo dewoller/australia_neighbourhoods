@@ -254,3 +254,37 @@ dbGetQuery(con, "
            facet_wrap(~distance, scale='free')
 
 ```
+
+
+```{r final}
+
+
+
+df_diff_total %>%
+  select( distance, intersection_area.c_sql, intersection_area.c_r) %>%
+  mutate( across( starts_with('inter'), .fn=function(x) {x/1000000})) %>%
+  group_by(distance) %>%
+  summarise( across( where(is.numeric), .fns=c('total'=sum))) %>%
+  mutate( difference = intersection_area.c_sql_total - intersection_area.c_r_total,
+         pct = round(difference / intersection_area.c_sql_total *100,2) )  %>% 
+  { . } -> df_diff_final
+
+
+
+  df_both_concord %>%
+  select( distance, starts_with('intersection_area')) %>%
+  nest( data = -distance) %>%
+  mutate(test = map(data, ~ cor.test(.x$intersection_area.c_r, .x$intersection_area.c_sql)),
+         tidied = map(test, broom::tidy)) %>%
+  mutate(n = map_int(data, nrow)) %>%
+  select(-test, -data) %>%
+  unnest(tidied) %>% 
+  { . } -> df_cor
+
+df_diff_final %>%
+  set_names(c('Buffer size (m)', 'Postgis Total Area (km^2) ', 'R Total Area (km^2)', 'Difference', "% Difference")) %>%
+  inner_join( df_cor, by=c('Buffer size (m)'='distance')) %>% 
+  gt()
+
+```
+
