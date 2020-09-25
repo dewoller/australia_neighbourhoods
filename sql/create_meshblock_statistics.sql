@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 drop table meshblock_statistics ;
 
 create index meshblock_concordance_400_idx_1 on meshblock_concordance_400( mb_code16, to_mb_code16 );
@@ -93,4 +92,3 @@ count(*) as n_mb
 from meshblock_concordance_1000 mc 
 join meshblock_detail md on md.mb_code16=mc.to_mb_code16
 group by 1,2,3;
->>>>>>> fbf4c652887e6bea159c644d8e2799f17c19660c
