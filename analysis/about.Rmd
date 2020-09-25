@@ -7,4 +7,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-This project was sponsored by (La Trobe University)[http://latrobe.edu.au]
+This project was sponsored by [La Trobe University](http://latrobe.edu.au)

@@ -1,10 +1,14 @@
-name: "parks_australia"
+name: "Australian Neighbourhood Land Use Composition"
 output_dir: ../docs
 navbar:
-  title: "parks_australia"
+  title: "Australian Neighbourhood Land Use Composition"
   left:
   - text: Home
     href: index.html
+  - text: Results
+    href: results.html
+  - text: Validation
+    href: validation.html
   - text: About
     href: about.html
   - text: License
