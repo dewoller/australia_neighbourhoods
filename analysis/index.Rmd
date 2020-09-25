@@ -7,3 +7,15 @@ output:
 ---
 
 
+This project was developed by Ali Lakhani and Dennis Wollersheim to generate a dataset describing Australian neighbourhood composition.
+
+
+ This dataset provides the land-use profile for 400-metres, 1-kilometre, 2-kilometres, and 5-kilometres surrounding all mesh blocks (MB) (n=358,122) in Australia. The data can be used to support the decisions of urban planners, diverse government departments, researchers and envrionmental and public health professionals. The data can also be used to identify disparities in access to land-use categories between urban and rural localities within Australia and the impact of remoteness classification and socioeconmic status on access to land-use categories.
+
+ The code to generate the dataset and this website, can be found at http://github.com/dewoller/australia_neighbourhoods
+
+ The dataset can be found on https://doi.org/10.26181/5f583219bd440
+
+
+
+
