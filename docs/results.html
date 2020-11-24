@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -256,6 +259,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -263,6 +329,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -313,7 +389,310 @@ $(document).ready(function () {
 
 <div id="graphs" class="section level1">
 <h1>Graphs</h1>
-<p># Graphs for 5000 M buffer<img src="figure/results.Rmd/graphs-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-2.png" width="960" style="display: block; margin: auto;" /># Graphs for 2000 M buffer<img src="figure/results.Rmd/graphs-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-4.png" width="960" style="display: block; margin: auto;" /># Graphs for 1000 M buffer<img src="figure/results.Rmd/graphs-5.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-6.png" width="960" style="display: block; margin: auto;" /># Graphs for 400 M buffer<img src="figure/results.Rmd/graphs-7.png" width="960" style="display: block; margin: auto;" /><img src="figure/results.Rmd/graphs-8.png" width="960" style="display: block; margin: auto;" /></p>
+<p># Graphs for 5000 M buffer<img src="figure/results.Rmd/graphs-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-1">
+Past versions of graphs-1.png
+</button>
+</p>
+<div id="fig-graphs-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-1.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/results.Rmd/graphs-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-2">
+Past versions of graphs-2.png
+</button>
+</p>
+<div id="fig-graphs-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-2.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p># Graphs for 2000 M buffer<img src="figure/results.Rmd/graphs-3.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-3">
+Past versions of graphs-3.png
+</button>
+</p>
+<div id="fig-graphs-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-3.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/results.Rmd/graphs-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-4">
+Past versions of graphs-4.png
+</button>
+</p>
+<div id="fig-graphs-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-4.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p># Graphs for 1000 M buffer<img src="figure/results.Rmd/graphs-5.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-5">
+Past versions of graphs-5.png
+</button>
+</p>
+<div id="fig-graphs-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-5.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/results.Rmd/graphs-6.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-6">
+Past versions of graphs-6.png
+</button>
+</p>
+<div id="fig-graphs-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-6.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p># Graphs for 400 M buffer<img src="figure/results.Rmd/graphs-7.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-7">
+Past versions of graphs-7.png
+</button>
+</p>
+<div id="fig-graphs-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-7.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/results.Rmd/graphs-8.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-graphs-8">
+Past versions of graphs-8.png
+</button>
+</p>
+<div id="fig-graphs-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/australia_neighbourhoods/blob/97e93eef0307d16b2a2ca4f3655fecbd766be1d7/docs/figure/results.Rmd/graphs-8.png" target="_blank">97e93ee</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2020-09-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -324,11 +703,11 @@ $(document).ready(function () {
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.2 (2020-06-22)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.1 LTS
+Running under: Ubuntu 18.04.5 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -343,37 +722,37 @@ attached base packages:
 
 other attached packages:
  [1] rvest_0.3.6           xml2_1.3.2            gt_0.2.2             
- [4] DT_0.15               leaflet_2.0.3         workflowr_1.6.2      
- [7] cleangeo_0.2-3        maptools_1.0-2        rgeos_0.5-5          
+ [4] DT_0.13               leaflet_2.0.3.9000    workflowr_1.6.2      
+ [7] cleangeo_0.2-3        maptools_1.0-1        rgeos_0.5-3          
 [10] sp_1.4-2              geohash_0.4.0         multidplyr_0.0.0.9000
 [13] osrm_3.3.3            RPostgreSQL_0.6-2     DBI_1.1.0            
-[16] furrr_0.1.0           future_1.18.0         fs_1.5.0             
-[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-6             
+[16] furrr_0.1.0           future_1.17.0         fs_1.5.0             
+[19] readxl_1.3.1          s2_1.0.2.9000         sf_0.9-3             
 [22] janitor_2.0.1         rmarkdown_2.3         lubridate_1.7.9      
 [25] geosphere_1.5-10      forcats_0.5.0         stringr_1.4.0        
 [28] dplyr_1.0.2           purrr_0.3.4           readr_1.3.1          
-[31] tidyr_1.1.0           tibble_3.0.3          ggplot2_3.3.2        
-[34] tidyverse_1.3.0       drake_7.12.5          dotenv_1.0.2         
+[31] tidyr_1.1.1           tibble_3.0.3          ggplot2_3.3.2        
+[34] tidyverse_1.3.0       drake_7.12.4          dotenv_1.0.2         
 [37] conflicted_1.0.4      nvimcom_0.9-102      
 
 loaded via a namespace (and not attached):
  [1] colorspace_1.4-1   ellipsis_0.3.1     class_7.3-17       rprojroot_1.3-2   
  [5] snakecase_0.11.0   rstudioapi_0.11    farver_2.0.3       listenv_0.8.0     
- [9] fansi_0.4.1        codetools_0.2-16   knitr_1.30         jsonlite_1.7.1    
-[13] broom_0.7.0        dbplyr_1.4.4       Xmisc_0.2.1        compiler_4.0.2    
-[17] httr_1.4.2         backports_1.1.10   assertthat_0.2.1   cli_2.0.2         
+ [9] fansi_0.4.1        codetools_0.2-16   knitr_1.29         jsonlite_1.7.1    
+[13] broom_0.7.0        dbplyr_1.4.3       Xmisc_0.2.1        compiler_4.0.2    
+[17] httr_1.4.2         backports_1.1.8    assertthat_0.2.1   cli_2.0.2         
 [21] later_1.1.0.1      htmltools_0.5.0    prettyunits_1.1.1  tools_4.0.2       
 [25] igraph_1.2.5       gtable_0.3.0       glue_1.4.2         wk_0.3.2          
 [29] Rcpp_1.0.5         cellranger_1.1.0   vctrs_0.3.4        crosstalk_1.1.0.1 
-[33] xfun_0.17          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
+[33] xfun_0.16          globals_0.12.5     lifecycle_0.2.0    scales_1.1.1      
 [37] hms_0.5.3          promises_1.1.1     parallel_4.0.2     yaml_2.2.1        
 [41] memoise_1.1.0      stringi_1.5.3      e1071_1.7-3        filelock_1.0.2    
 [45] storr_1.2.1        rlang_0.4.7        pkgconfig_2.0.3    evaluate_0.14     
-[49] lattice_0.20-41    labeling_0.3       htmlwidgets_1.5.1  tidyselect_1.1.0  
+[49] lattice_0.20-41    htmlwidgets_1.5.1  labeling_0.3       tidyselect_1.1.0  
 [53] magrittr_1.5       R6_2.4.1           generics_0.0.2     base64url_1.4     
-[57] txtq_0.2.3         pillar_1.4.6       haven_2.3.1        foreign_0.8-79    
-[61] withr_2.3.0        units_0.6-7        modelr_0.1.8       crayon_1.3.4      
-[65] KernSmooth_2.23-17 progress_1.2.2     grid_4.0.2         blob_1.2.1        
+[57] txtq_0.2.3         whisker_0.4        pillar_1.4.6       haven_2.3.1       
+[61] foreign_0.8-79     withr_2.2.0        units_0.6-6        modelr_0.1.7      
+[65] crayon_1.3.4       KernSmooth_2.23-17 progress_1.2.2     grid_4.0.2        
 [69] git2r_0.27.1       reprex_0.3.0       digest_0.6.25      classInt_0.4-3    
 [73] httpuv_1.5.4       munsell_0.5.0     </code></pre>
 </div>
@@ -393,6 +772,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 
@@ -425,6 +806,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

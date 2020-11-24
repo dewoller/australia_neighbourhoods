@@ -29,7 +29,7 @@ AXIS[\"latitude\",north,
 
   con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
                                 user="dewoller", password=db_password,
-                                host="localhost", port=5432, dbname="postgis_db")
+                                host="alf", port=5432, dbname="postgis_db")
 
 
   st_read(con, query= "

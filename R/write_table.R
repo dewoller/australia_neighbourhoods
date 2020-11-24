@@ -2,7 +2,7 @@ write_table <- function( df_mesh_centroids_sample) {
 
   con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
                                 user="dewoller", password=db_password,
-                                host="localhost", port=5432, dbname="postgis_db")
+                                host="alf", port=5432, dbname="postgis_db")
 
   df_mesh_centroids_sample %>%
     select(mb_code16) %>%

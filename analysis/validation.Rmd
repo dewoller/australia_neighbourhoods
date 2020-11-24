@@ -28,7 +28,6 @@ Postgis has about 0.58% larger area calculations than R.
 browser()
 source('_drake.R')
 
-print('here')
 
   c(400,1000,2000, 5000) %>%
   enframe(name=NULL, value='distance') %>%
@@ -46,14 +45,12 @@ bind_rows(
 mutate( intersection_area = as.numeric( intersection_area)) %>%
 { . } -> df_mesh_within_range_area
 
-print('here')
 
 df_mesh_centroids_sample  %>%
   anti_join( df_mesh_within_range_area)
 
    df_mesh_within_range_area %>%
    count( mb_code16, distance)
- print('here')
 
 df_mesh_within_range_area %>%
   group_by(mb_code16, mb_cat16.1, distance) %>%
@@ -64,7 +61,6 @@ df_mesh_within_range_area %>%
   rename( mb_category_name_2016=mb_cat16.1 ) %>%
   { . } -> df_c_r
 
-print('here')
 
 
 df_c_r %>%
@@ -72,7 +68,6 @@ df_c_r %>%
   summarise( intersection_area = sum( intersection_area), .groups='drop') %>%
   { . } -> df_c_r_total
 
-print('here')
 
 ```
 
@@ -84,7 +79,7 @@ print('here')
 
   con <- RPostgreSQL::dbConnect(DBI::dbDriver("PostgreSQL"),
                                 user="dewoller", password=db_password,
-                                host="localhost", port=5432, dbname="postgis_db")
+                                host="alf", port=5432, dbname="postgis_db")
 
 dbGetQuery(con, "
            ---
@@ -112,6 +107,7 @@ df_c_sql %>%
   group_by( mb_code16, distance) %>%
   summarise( intersection_area = sum( intersection_area), .groups='drop') %>%
   { . } -> df_c_sql_total
+
 ################################################################################yy#####
 
 
@@ -119,7 +115,7 @@ df_c_sql %>%
 
 # analysis - comparison at category level
  - difference is the R calculated amount - SQL calculated amount at land use level
-```{r}
+```{r category_comparision}
 
 ################################################################################yy#####
 
